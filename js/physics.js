@@ -131,7 +131,9 @@ export function createDicePhysics(canvas, { onTap } = {}) {
     // device conventions differ — without this inference, dice float UP on
     // phones that report ay > 0 at rest
     if (yTiltSign === 0 && Math.abs(ay) > 4) yTiltSign = ay > 0 ? 1 : -1;
-    engine.gravity.x = clamp(ax / g, -1.3, 1.3);
+    // x follows the same convention flip as y: tilt-left must roll dice left
+    const xSign = yTiltSign === 0 ? 1 : -yTiltSign;
+    engine.gravity.x = clamp(xSign * ax / g, -1.3, 1.3);
     engine.gravity.y = clamp(yTiltSign * ay / g, -1.3, 1.3);
   }
 
@@ -247,6 +249,7 @@ export function createDicePhysics(canvas, { onTap } = {}) {
 
   return {
     available: true,
+    get gravity() { return { x: engine.gravity.x, y: engine.gravity.y }; },
     resize,
     sync,
     launch,

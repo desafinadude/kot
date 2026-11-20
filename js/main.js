@@ -1,7 +1,7 @@
 // Bootstrap: data → setup screen → game.
 import { loadData, mountArt, fallbackHTML } from './data.js';
 import { Game } from './engine.js';
-import { createUI } from './ui.js?v=6';
+import { createUI } from './ui.js?v=7';
 import { createShakeDetector } from './shake.js';
 import { icon } from './icons.js';
 import { portrait } from './portrait.js';
@@ -80,12 +80,22 @@ function updateStart() {
 $('btnMinus').onclick = () => { count = Math.max(2, count - 1); selected = mode === 'bots' ? selected.slice(0, 1) : selected.slice(0, count); renderGrid(); updateStart(); };
 $('btnPlus').onclick = () => { count = Math.min(6, count + 1); renderGrid(); updateStart(); };
 
-document.querySelectorAll('.mode-btn').forEach((b) => {
+document.querySelectorAll('#modeToggle .mode-btn').forEach((b) => {
   b.onclick = () => {
     mode = b.dataset.mode;
-    document.querySelectorAll('.mode-btn').forEach((x) => x.classList.toggle('active', x === b));
+    document.querySelectorAll('#modeToggle .mode-btn').forEach((x) => x.classList.toggle('active', x === b));
     if (mode === 'bots') selected = selected.slice(0, 1);
     renderGrid(); updateStart();
+  };
+});
+
+// dice style: gravity physics vs faces that appear & change in place
+const diceMode = localStorage.getItem('mc-dice') || 'gravity';
+document.querySelectorAll('#diceToggle .mode-btn').forEach((b) => {
+  b.classList.toggle('active', b.dataset.dice === diceMode);
+  b.onclick = () => {
+    localStorage.setItem('mc-dice', b.dataset.dice);
+    document.querySelectorAll('#diceToggle .mode-btn').forEach((x) => x.classList.toggle('active', x === b));
   };
 });
 

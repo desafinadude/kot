@@ -4,7 +4,7 @@ import { mountArt } from './data.js';
 import { icon } from './icons.js';
 import { portrait } from './portrait.js';
 import { sfx } from './sfx.js';
-import { createDicePhysics } from './physics.js?v=4';
+import { createDicePhysics } from './physics.js?v=5';
 
 const $ = (id) => document.getElementById(id);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -22,15 +22,19 @@ export function createUI(game) {
     cardList: $('cardList'), shopEnergy: $('shopEnergy'), shopNote: $('shopNote'),
     sweep: $('btnSweep'), logList: $('logList'), rulesBody: $('rulesBody'),
   };
-  // gravity dice — Matter.js; null → DOM fallback dice
-  let phys = createDicePhysics(els.diceCanvas, {
-    onTap: (i) => {
-      if (!game.state) return;
-      if (game.state.phase === 'awaitRoll') { primary(); return; }
-      if (i >= 0) onDieTap(i);
-    },
-  });
+  // gravity dice — Matter.js; null → DOM fallback dice (also when the menu
+  // turns gravity off: faces appear & change in place, no flight)
+  let phys = localStorage.getItem('mc-dice') === 'flat'
+    ? null
+    : createDicePhysics(els.diceCanvas, {
+        onTap: (i) => {
+          if (!game.state) return;
+          if (game.state.phase === 'awaitRoll') { primary(); return; }
+          if (i >= 0) onDieTap(i);
+        },
+      });
   if (phys) { els.diceFaces.classList.add('hidden'); els.diceCanvas.classList.remove('hidden'); }
+  window.__phys = phys;   // debug/test handle
   // static map scaffold: base drawing + persistent fx layer (beams survive re-renders)
   els.map.innerHTML = '<svg class="tokyo-svg" id="mapBase" viewBox="0 0 460 260" shape-rendering="crispEdges"></svg><svg class="map-fx" id="mapFx" viewBox="0 0 460 260"></svg>';
   els.mapBase = $('mapBase');
@@ -328,13 +332,13 @@ export function createUI(game) {
       const myTurn = p.alive && p.seat === s.turn;
       return `
       <div class="p-card ${myTurn ? 'active' : ''} ${p.alive ? '' : 'dead'}" id="card-${p.seat}" style="--pc:${p.color}">
+        <div class="pc-name">${p.name}</div>
         <div class="pc-pic">
           <span class="pc-sprite">${portrait(p, 44)}</span>
           ${p.alive ? '' : `<span class="pc-ko">${icon('skull', 15)}</span>`}
           ${myTurn ? '<span class="pc-go">GO</span>' : ''}
         </div>
         <div class="pc-body">
-          <div class="pc-name">${p.name}</div>
           <div class="pc-hearts">${pips}</div>
           <div class="pc-stats">
             <span class="pc-vp">${icon('star', 15, { filled: true })}${p.vp}</span>
@@ -345,9 +349,10 @@ export function createUI(game) {
         </div>
       </div>`;
     }).join('');
-    const cols = s.players.length === 2 || s.players.length === 4 ? 2 : 3;
+    const n = s.players.length;
+    const cols = n === 2 ? 2 : n === 4 ? 4 : 3;   // vertical cards: 4 abreast fits a phone
     els.players.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-    els.players.style.setProperty('--pic', `${s.players.length === 2 ? 104 : s.players.length === 4 ? 78 : 64}px`);
+    els.players.style.setProperty('--pic', `${n === 2 ? 96 : n === 4 ? 56 : n === 3 ? 64 : 44}px`);
     [...els.players.querySelectorAll('.pc-sprite')].forEach((el, i) => mountArt(el, art, `monster_${s.players[i].monsterId}`));
     checkDiffs(s);
   }

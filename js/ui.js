@@ -461,8 +461,8 @@ export function createUI(game) {
   // ── actions ──────────────────────────────────────────────────────────────
   async function animateRoll() {
     rolling = true; sfx.roll();
+    render();   // sync faces/count first — bodies must exist before launch
     phys?.launch({ keepMask: game.state.phase === 'rolled' ? [...game.state.keep] : [] });
-    render();
     await sleep(phys ? 340 : 430);
     return () => { rolling = false; };
   }

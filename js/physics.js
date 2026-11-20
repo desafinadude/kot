@@ -26,10 +26,14 @@ export function createDicePhysics(canvas, { onTap } = {}) {
   function resize() {
     const r = canvas.getBoundingClientRect(); // canvas extends above the tray
     if (!r.width) return;
-    W = r.width; H = r.height;
     const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-    canvas.width = Math.round(W * dpr);
-    canvas.height = Math.round(H * dpr);
+    const cw = Math.round(r.width * dpr), ch = Math.round(r.height * dpr);
+    // render() calls resize() every frame — only relayout when the box actually
+    // changed, or layoutIdle() would wipe launch velocities mid-flight.
+    if (W === r.width && canvas.width === cw && canvas.height === ch) return;
+    W = r.width; H = r.height;
+    canvas.width = cw;
+    canvas.height = ch;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     S = clamp((W - 5 * 8) / 6.4, 40, 54);
     buildWalls();
@@ -41,6 +45,7 @@ export function createDicePhysics(canvas, { onTap } = {}) {
     const t = 60;
     walls = [
       Bodies.rectangle(W / 2, H + t / 2 - 2, W * 2, t, { isStatic: true }),
+      Bodies.rectangle(W / 2, -t / 2, W * 2, t, { isStatic: true }),   // ceiling — keep flight in frame
       Bodies.rectangle(-t / 2, H / 2, t, H * 4, { isStatic: true }),
       Bodies.rectangle(W + t / 2, H / 2, t, H * 4, { isStatic: true }),
     ];

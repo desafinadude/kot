@@ -82,3 +82,11 @@ Strategy: static web app (no build step), portrait mobile, JSON-driven data (car
 - [x] M3. Tokens carry real generated art (SVG `<image>` with clip + kanji fallback); camp tokens for outsiders; tap-seal → perk/drawback tip unchanged
 - [x] M4. Beams live on a persistent `mapFx` overlay SVG (survive re-renders, no panning) — verified drawing during strike; capture flash on `.stamp` with drop-shadow keyframes
 - [x] M5. Verified: 5 spots/stamps, tip works, beamsSeen=1 mid-strike, full resolve+yield flow, 0 page errors, smoke green; versions bumped ui/main ?v=6, paper.css ?v=7
+
+## V9 — Installable PWA (user: “manifest + installable on a phone”)
+
+- [x] P1. `manifest.webmanifest` — Monster City, portrait, standalone, parchment theme, subpath-safe (`./` ids/urls so GitHub Pages project sites work), 3 icons (192/512 any + 512 maskable)
+- [x] P2. `sw.js` — network-first + cache fallback, same-origin only (CDNs pass through), cache `monster-city-v1` purged on activate; registered at the end of `main.js` (http/https only)
+- [x] P3. `tools/make_icons.py` — composes icons from the Gōryū portrait (parchment + vermilion border, rounded any-icons, safe-zone maskable, opaque 180 apple-touch) — sizes verified
+- [x] P4. Metas: theme-color `#f0e6d2`, apple-touch-icon/title, mobile-web-app-capable, favicon; README install section (Android needs HTTPS for the prompt, iOS Add-to-Home works over LAN)
+- [x] P5. Verified in browser: SW registered (scope /), manifest 200 `application/manifest+json`, icon-192/maskable/apple-touch all 200, titles set

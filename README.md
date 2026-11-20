@@ -11,8 +11,18 @@ npm run serve          # or: python3 -m http.server 8080
 # open http://localhost:8080  (on your phone: http://<your-lan-ip>:8080)
 ```
 
-Add to home screen on iOS/Android for full-screen portrait play.
-Shake-to-roll needs HTTPS or localhost on iOS; tap always works.
+### Install on your phone (PWA)
+
+- **Android (Chrome):** open the game over **HTTPS** → menu⋮ → *Install app*
+  (or *Add to Home screen*) — it installs full-screen portrait as “Monster City”.
+- **iOS (Safari):** Share → *Add to Home Screen* — works even over LAN http.
+- A service worker caches the app shell (**network-first**: always fresh when
+  online, playable offline). Icons are composed from the Gōryū portrait by
+  `tools/make_icons.py`.
+- Note: Android’s install prompt needs a secure context (https or localhost) —
+  plain `http://<lan-ip>` won’t offer it. Deploy to any HTTPS host (GitHub
+  Pages fits — paths are relative, works under a repo subpath).
+- Shake-to-roll needs HTTPS or localhost on iOS; tap always works.
 
 ## Features
 
@@ -104,7 +114,10 @@ data/monsters.json        the 6 kaiju + powers (hooks)
 data/zones.json           districts, perks, unlock rules
 data/cards.json           card database (canonical — edit directly)
 data/art.json             art manifest: src → fallback mapping
+manifest.webmanifest      PWA manifest — installable as an app
+sw.js                     service worker — offline shell (network-first)
 tools/smoke.mjs           headless engine test (node tools/smoke.mjs)
+tools/make_icons.py       PWA icon composer (Gōryū portrait → 192/512/maskable)
 ```
 
 ## Importing generated art

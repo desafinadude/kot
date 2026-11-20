@@ -94,6 +94,11 @@ $('setupLogo').innerHTML = '<span class="seal-king">王</span>';
 renderGrid();
 updateStart();
 
+// PWA — installable + offline shell (network-first, cache fallback)
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+  navigator.serviceWorker.register('sw.js').catch(() => { /* offline/dev: ignore */ });
+}
+
 // ── game ───────────────────────────────────────────────────────────────────
 $('btnStart').onclick = async () => {
   if (mode === 'bots' ? selected.length !== 1 : selected.length !== count) return;

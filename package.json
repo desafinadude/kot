@@ -5,6 +5,6 @@
   "type": "module",
   "description": "Monster City — Kaiju Edition. Static portrait mobile game (no build step).",
   "scripts": {
-    "serve": "python3 -m http.server 8080"
+    "serve": "python3 tools/serve.py"
   }
 }

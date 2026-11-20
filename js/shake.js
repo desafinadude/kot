@@ -33,6 +33,7 @@ export function createShakeDetector(onShake, onMotion) {
     },
     async enable() {
       if (enabled) return { ok: true };
+      if (!window.isSecureContext) return { ok: false, reason: 'insecure' }; // motion needs https/localhost
       if (typeof DeviceMotionEvent === 'undefined') return { ok: false, reason: 'no-sensor' };
       if (typeof DeviceMotionEvent.requestPermission === 'function') {
         try {

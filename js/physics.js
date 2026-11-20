@@ -114,18 +114,20 @@ export function createDicePhysics(canvas, { onTap } = {}) {
     });
   }
 
+  let yTiltSign = 0;   // inferred once: which sign of ay means "down the screen"
   function setGravity(ax, ay, az) {
     if (!tiltOn) return;
     const g = 9.81;
-    const nx = clamp(ax / g, -1.3, 1.3);
-    const ny = -ay / g;
     // flat on a table → keep normal downward gravity
     if (Math.abs(ax) < 2.4 && Math.abs(ay) < 2.4) {
       engine.gravity.x = 0; engine.gravity.y = 1;
       return;
     }
-    engine.gravity.x = nx;
-    engine.gravity.y = clamp(ny, -1.3, 1.3);
+    // device conventions differ — without this inference, dice float UP on
+    // phones that report ay > 0 at rest
+    if (yTiltSign === 0 && Math.abs(ay) > 4) yTiltSign = ay > 0 ? 1 : -1;
+    engine.gravity.x = clamp(ax / g, -1.3, 1.3);
+    engine.gravity.y = clamp(yTiltSign * ay / g, -1.3, 1.3);
   }
 
   function sync(nextFaces, nextKeep) {

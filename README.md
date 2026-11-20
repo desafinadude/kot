@@ -7,7 +7,7 @@ rampage through a city for Victory Points: **6 fictional Japanese titans** and
 ## Run
 
 ```bash
-npm run serve          # or: python3 -m http.server 8080
+npm run serve          # no-cache dev server (tools/serve.py) — avoids stale phone caches
 # open http://localhost:8080  (on your phone: http://<your-lan-ip>:8080)
 ```
 
@@ -22,7 +22,9 @@ npm run serve          # or: python3 -m http.server 8080
 - Note: Android’s install prompt needs a secure context (https or localhost) —
   plain `http://<lan-ip>` won’t offer it. Deploy to any HTTPS host (GitHub
   Pages fits — paths are relative, works under a repo subpath).
-- Shake-to-roll needs HTTPS or localhost on iOS; tap always works.
+- Shake/tilt needs HTTPS or localhost (secure context) on phones — over plain
+  LAN http the sensors stay silent and the game falls back to tap-only; tap
+  always works.
 
 ## Features
 

@@ -26,6 +26,9 @@ export class Game {
     const botSeats = opts.botSeats || [];
     const zonesActive = this.defs.zones.unlockByPlayerCount[String(n)] || ['city'];
     const full = shuffle(monsterIds.slice());
+    // bot flags must follow their monsters through the shuffle — otherwise the
+    // human's pick can land on a CPU seat and the player controls a stranger.
+    const botMonsters = new Set(botSeats.map((i) => monsterIds[i]));
     this.state = {
       serial: 0, players: [], turn: 0, phase: 'awaitRoll', winner: null,
       dice: [], keep: [], rerollsLeft: 0, zonesActive, shop: [], deck: [], spent: [],
@@ -37,7 +40,7 @@ export class Game {
       this.state.players.push({
         seat: i, monsterId: mon.id, name: mon.name, color: mon.color, emoji: mon.emoji,
         hp: 10, maxHp: 10, vp: 0, energy: 0, zone: null, alive: true,
-        bot: botSeats.includes(i),
+        bot: botMonsters.has(full[i]),
         cards: [], mods: {}, statuses: { poison: 0, shrink: 0 },
         dealtDamage: 0, shield: false, superJumpSerial: -1, flags: {},
       });

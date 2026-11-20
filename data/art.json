@@ -1,0 +1,391 @@
+{
+  "_readme": "Art manifest (v3). Generate art per assets/art/README.md, drop files into assets/art/, ensure 'src' points at them. Missing files keep ink placeholders (emoji:/css: fallbacks only where still relevant). Zones & dice art are deprecated: districts render on a real Leaflet map, dice faces use js/icons.js.",
+  "version": 3,
+  "assets": {
+    "logo": {
+      "src": "assets/art/logo.webp?v=1",
+      "fallback": "css:none"
+    },
+    "background": {
+      "src": "assets/art/bg_tokyo_night.webp?v=1",
+      "fallback": "none:"
+    },
+    "monster_ryuga": {
+      "src": "assets/art/monsters/ryuga.webp?v=2",
+      "fallback": "none:"
+    },
+    "monster_shirohime": {
+      "src": "assets/art/monsters/shirohime.webp?v=2",
+      "fallback": "none:"
+    },
+    "monster_tetsujin9": {
+      "src": "assets/art/monsters/tetsujin9.webp?v=2",
+      "fallback": "none:"
+    },
+    "monster_onizaru": {
+      "src": "assets/art/monsters/onizaru.webp?v=2",
+      "fallback": "none:"
+    },
+    "monster_kagero": {
+      "src": "assets/art/monsters/kagero.webp?v=2",
+      "fallback": "none:"
+    },
+    "monster_ganryu": {
+      "src": "assets/art/monsters/ganryu.webp?v=2",
+      "fallback": "none:"
+    },
+    "dice_1_black": {
+      "src": "assets/art/dice/1_black.png?v=2",
+      "fallback": "none:"
+    },
+    "dice_2_black": {
+      "src": "assets/art/dice/2_black.png?v=2",
+      "fallback": "none:"
+    },
+    "dice_3_black": {
+      "src": "assets/art/dice/3_black.png?v=2",
+      "fallback": "none:"
+    },
+    "dice_energy_black": {
+      "src": "assets/art/dice/energy_black.png?v=2",
+      "fallback": "none:"
+    },
+    "dice_attack_black": {
+      "src": "assets/art/dice/attack_black.png?v=2",
+      "fallback": "none:"
+    },
+    "dice_heal_black": {
+      "src": "assets/art/dice/heal_black.png?v=2",
+      "fallback": "none:"
+    },
+    "dice_1_green": {
+      "src": "assets/art/dice/1_green.png?v=2",
+      "fallback": "none:"
+    },
+    "dice_2_green": {
+      "src": "assets/art/dice/2_green.png?v=2",
+      "fallback": "none:"
+    },
+    "dice_3_green": {
+      "src": "assets/art/dice/3_green.png?v=2",
+      "fallback": "none:"
+    },
+    "dice_energy_green": {
+      "src": "assets/art/dice/energy_green.png?v=2",
+      "fallback": "none:"
+    },
+    "dice_attack_green": {
+      "src": "assets/art/dice/attack_green.png?v=2",
+      "fallback": "none:"
+    },
+    "dice_heal_green": {
+      "src": "assets/art/dice/heal_green.png?v=2",
+      "fallback": "none:"
+    },
+    "card_army": {
+      "src": "assets/art/cards/army.png?v=2",
+      "fallback": "none:"
+    },
+    "card_corner-store": {
+      "src": "assets/art/cards/corner-store.png?v=2",
+      "fallback": "none:"
+    },
+    "card_fire-blast": {
+      "src": "assets/art/cards/fire-blast.png?v=2",
+      "fallback": "none:"
+    },
+    "card_heal": {
+      "src": "assets/art/cards/heal.png?v=2",
+      "fallback": "none:"
+    },
+    "card_national-guard": {
+      "src": "assets/art/cards/national-guard.png?v=2",
+      "fallback": "none:"
+    },
+    "card_commuter-train": {
+      "src": "assets/art/cards/commuter-train.png?v=2",
+      "fallback": "none:"
+    },
+    "card_high-altitude-bombing": {
+      "src": "assets/art/cards/high-altitude-bombing.png?v=2",
+      "fallback": "none:"
+    },
+    "card_tanks": {
+      "src": "assets/art/cards/tanks.png?v=2",
+      "fallback": "none:"
+    },
+    "card_apartment-building": {
+      "src": "assets/art/cards/apartment-building.png?v=2",
+      "fallback": "none:"
+    },
+    "card_drop-from-high-altitude": {
+      "src": "assets/art/cards/drop-from-high-altitude.png?v=2",
+      "fallback": "none:"
+    },
+    "card_jet-fighters": {
+      "src": "assets/art/cards/jet-fighters.png?v=2",
+      "fallback": "none:"
+    },
+    "card_amusement-park": {
+      "src": "assets/art/cards/amusement-park.png?v=2",
+      "fallback": "none:"
+    },
+    "card_gas-refinery": {
+      "src": "assets/art/cards/gas-refinery.png?v=2",
+      "fallback": "none:"
+    },
+    "card_nuclear-power-plant": {
+      "src": "assets/art/cards/nuclear-power-plant.png?v=2",
+      "fallback": "none:"
+    },
+    "card_skyscraper": {
+      "src": "assets/art/cards/skyscraper.png?v=2",
+      "fallback": "none:"
+    },
+    "card_vast-storm": {
+      "src": "assets/art/cards/vast-storm.png?v=2",
+      "fallback": "none:"
+    },
+    "card_evacuation-orders": {
+      "src": "assets/art/cards/evacuation-orders.png?v=2",
+      "fallback": "none:"
+    },
+    "card_frenzy": {
+      "src": "assets/art/cards/frenzy.png?v=2",
+      "fallback": "none:"
+    },
+    "card_energize": {
+      "src": "assets/art/cards/energize.png?v=2",
+      "fallback": "none:"
+    },
+    "card_made-in-a-lab": {
+      "src": "assets/art/cards/made-in-a-lab.png?v=2",
+      "fallback": "none:"
+    },
+    "card_monster-batteries": {
+      "src": "assets/art/cards/monster-batteries.png?v=2",
+      "fallback": "none:"
+    },
+    "card_solar-powered": {
+      "src": "assets/art/cards/solar-powered.png?v=2",
+      "fallback": "none:"
+    },
+    "card_alien-metabolism": {
+      "src": "assets/art/cards/alien-metabolism.png?v=2",
+      "fallback": "none:"
+    },
+    "card_camouflage": {
+      "src": "assets/art/cards/camouflage.png?v=2",
+      "fallback": "none:"
+    },
+    "card_complete-destruction": {
+      "src": "assets/art/cards/complete-destruction.png?v=2",
+      "fallback": "none:"
+    },
+    "card_dedicated-news-team": {
+      "src": "assets/art/cards/dedicated-news-team.png?v=2",
+      "fallback": "none:"
+    },
+    "card_energy-hoarder": {
+      "src": "assets/art/cards/energy-hoarder.png?v=2",
+      "fallback": "none:"
+    },
+    "card_friend-of-children": {
+      "src": "assets/art/cards/friend-of-children.png?v=2",
+      "fallback": "none:"
+    },
+    "card_herd-culler": {
+      "src": "assets/art/cards/herd-culler.png?v=2",
+      "fallback": "none:"
+    },
+    "card_intimidating-roar": {
+      "src": "assets/art/cards/intimidating-roar.png?v=2",
+      "fallback": "none:"
+    },
+    "card_metamorph": {
+      "src": "assets/art/cards/metamorph.png?v=2",
+      "fallback": "none:"
+    },
+    "card_opportunist": {
+      "src": "assets/art/cards/opportunist.png?v=2",
+      "fallback": "none:"
+    },
+    "card_plot-twist": {
+      "src": "assets/art/cards/plot-twist.png?v=2",
+      "fallback": "none:"
+    },
+    "card_poison-quills": {
+      "src": "assets/art/cards/poison-quills.png?v=2",
+      "fallback": "none:"
+    },
+    "card_psychic-probe": {
+      "src": "assets/art/cards/psychic-probe.png?v=2",
+      "fallback": "none:"
+    },
+    "card_rapid-healing": {
+      "src": "assets/art/cards/rapid-healing.png?v=2",
+      "fallback": "none:"
+    },
+    "card_rooting-for-the-underdog": {
+      "src": "assets/art/cards/rooting-for-the-underdog.png?v=2",
+      "fallback": "none:"
+    },
+    "card_sleep-walker": {
+      "src": "assets/art/cards/sleep-walker.png?v=2",
+      "fallback": "none:"
+    },
+    "card_stretchy": {
+      "src": "assets/art/cards/stretchy.png?v=2",
+      "fallback": "none:"
+    },
+    "card_thunder-stomp": {
+      "src": "assets/art/cards/thunder-stomp.png?v=2",
+      "fallback": "none:"
+    },
+    "card_unstable-dna": {
+      "src": "assets/art/cards/unstable-dna.png?v=2",
+      "fallback": "none:"
+    },
+    "card_we-re-only-making-it-stronger": {
+      "src": "assets/art/cards/we-re-only-making-it-stronger.png?v=2",
+      "fallback": "none:"
+    },
+    "card_armor-plating": {
+      "src": "assets/art/cards/armor-plating.png?v=2",
+      "fallback": "none:"
+    },
+    "card_background-dweller": {
+      "src": "assets/art/cards/background-dweller.png?v=2",
+      "fallback": "none:"
+    },
+    "card_eater-of-the-dead": {
+      "src": "assets/art/cards/eater-of-the-dead.png?v=2",
+      "fallback": "none:"
+    },
+    "card_even-bigger": {
+      "src": "assets/art/cards/even-bigger.png?v=2",
+      "fallback": "none:"
+    },
+    "card_fire-breathing": {
+      "src": "assets/art/cards/fire-breathing.png?v=2",
+      "fallback": "none:"
+    },
+    "card_gourmet": {
+      "src": "assets/art/cards/gourmet.png?v=2",
+      "fallback": "none:"
+    },
+    "card_healing-ray": {
+      "src": "assets/art/cards/healing-ray.png?v=2",
+      "fallback": "none:"
+    },
+    "card_monster-sidekick": {
+      "src": "assets/art/cards/monster-sidekick.png?v=2",
+      "fallback": "none:"
+    },
+    "card_omnivore": {
+      "src": "assets/art/cards/omnivore.png?v=2",
+      "fallback": "none:"
+    },
+    "card_parasitic-tentacles": {
+      "src": "assets/art/cards/parasitic-tentacles.png?v=2",
+      "fallback": "none:"
+    },
+    "card_poison-spit": {
+      "src": "assets/art/cards/poison-spit.png?v=2",
+      "fallback": "none:"
+    },
+    "card_regeneration": {
+      "src": "assets/art/cards/regeneration.png?v=2",
+      "fallback": "none:"
+    },
+    "card_smoke-cloud": {
+      "src": "assets/art/cards/smoke-cloud.png?v=2",
+      "fallback": "none:"
+    },
+    "card_super-jump": {
+      "src": "assets/art/cards/super-jump.png?v=2",
+      "fallback": "none:"
+    },
+    "card_telepath": {
+      "src": "assets/art/cards/telepath.png?v=2",
+      "fallback": "none:"
+    },
+    "card_throw-a-tanker": {
+      "src": "assets/art/cards/throw-a-tanker.png?v=2",
+      "fallback": "none:"
+    },
+    "card_urbavore": {
+      "src": "assets/art/cards/urbavore.png?v=2",
+      "fallback": "none:"
+    },
+    "card_alpha-monster": {
+      "src": "assets/art/cards/alpha-monster.png?v=2",
+      "fallback": "none:"
+    },
+    "card_burrowing": {
+      "src": "assets/art/cards/burrowing.png?v=2",
+      "fallback": "none:"
+    },
+    "card_cannibalistic": {
+      "src": "assets/art/cards/cannibalistic.png?v=2",
+      "fallback": "none:"
+    },
+    "card_freeze-time": {
+      "src": "assets/art/cards/freeze-time.png?v=2",
+      "fallback": "none:"
+    },
+    "card_giant-brain": {
+      "src": "assets/art/cards/giant-brain.png?v=2",
+      "fallback": "none:"
+    },
+    "card_herbivore": {
+      "src": "assets/art/cards/herbivore.png?v=2",
+      "fallback": "none:"
+    },
+    "card_jets": {
+      "src": "assets/art/cards/jets.png?v=2",
+      "fallback": "none:"
+    },
+    "card_spiked-tail": {
+      "src": "assets/art/cards/spiked-tail.png?v=2",
+      "fallback": "none:"
+    },
+    "card_acid-attack": {
+      "src": "assets/art/cards/acid-attack.png?v=2",
+      "fallback": "none:"
+    },
+    "card_reflective-hide": {
+      "src": "assets/art/cards/reflective-hide.png?v=2",
+      "fallback": "none:"
+    },
+    "card_shrink-ray": {
+      "src": "assets/art/cards/shrink-ray.png?v=2",
+      "fallback": "none:"
+    },
+    "card_wings": {
+      "src": "assets/art/cards/wings.png?v=2",
+      "fallback": "none:"
+    },
+    "card_extra-head": {
+      "src": "assets/art/cards/extra-head.png?v=2",
+      "fallback": "none:"
+    },
+    "card_it-has-a-child": {
+      "src": "assets/art/cards/it-has-a-child.png?v=2",
+      "fallback": "none:"
+    },
+    "card_nova-breath": {
+      "src": "assets/art/cards/nova-breath.png?v=2",
+      "fallback": "none:"
+    },
+    "card_mimic": {
+      "src": "assets/art/cards/mimic.png?v=2",
+      "fallback": "none:"
+    }
+  },
+  "recommendedSizes": {
+    "characters": "1024×1024, transparent bg, ink & wash on paper (see assets/art/README.md)",
+    "logo": "512×512",
+    "background": "1080×1920 (portrait 9:16), low contrast"
+  }
+}

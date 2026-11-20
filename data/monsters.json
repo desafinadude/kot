@@ -1,0 +1,94 @@
+{
+  "monsters": [
+    {
+      "id": "ryuga",
+      "name": "Gōryū",
+      "title": "The Atomic Terror",
+      "element": "Atomic",
+      "color": "#5aa469",
+      "accent": "#2f6b46",
+      "emoji": "🦎",
+      "power": {
+        "id": "atomic_breath",
+        "name": "Atomic Breath",
+        "text": "Your attacks blast +1 damage.",
+        "hooks": { "attackDamageBonus": 1 }
+      }
+    },
+    {
+      "id": "shirohime",
+      "name": "Shirohime",
+      "title": "Empress of Moonlight",
+      "element": "Moon",
+      "color": "#f8bbd0",
+      "accent": "#ad1457",
+      "emoji": "🦋",
+      "power": {
+        "id": "moonlit_scales",
+        "name": "Moonlit Scales",
+        "text": "Heal dice restore 2 HP each (HP cap unchanged).",
+        "hooks": { "healPerHeart": 2 }
+      }
+    },
+    {
+      "id": "tetsujin9",
+      "name": "Tetsujin-9",
+      "title": "The Iron Menace",
+      "element": "Steel",
+      "color": "#b0bec5",
+      "accent": "#37474f",
+      "emoji": "🤖",
+      "power": {
+        "id": "reactive_armor",
+        "name": "Reactive Armor",
+        "text": "Ignore the first damage point of each attack.",
+        "hooks": { "incomingReduce": 1 }
+      }
+    },
+    {
+      "id": "onizaru",
+      "name": "Onizaru",
+      "title": "Terror of the Red Peak",
+      "element": "Fury",
+      "color": "#ff8a65",
+      "accent": "#bf360c",
+      "emoji": "🦍",
+      "power": {
+        "id": "primal_fury",
+        "name": "Primal Fury",
+        "text": "You get one extra reroll each turn.",
+        "hooks": { "extraRerolls": 1 }
+      }
+    },
+    {
+      "id": "kagero",
+      "name": "Suzaku",
+      "title": "The Vermillion Sky Terror",
+      "element": "Sky",
+      "color": "#f4653f",
+      "accent": "#b93d24",
+      "emoji": "🦅",
+      "power": {
+        "id": "vermillion_storm",
+        "name": "Vermillion Storm",
+        "text": "Each Energy die face grants +1 Energy.",
+        "hooks": { "energyPerFace": 1 }
+      }
+    },
+    {
+      "id": "ganryu",
+      "name": "Ganryū",
+      "title": "The Living Island",
+      "element": "Earth",
+      "color": "#aed581",
+      "accent": "#33691e",
+      "emoji": "🐢",
+      "power": {
+        "id": "barbed_shell",
+        "name": "Barbed Shell",
+        "text": "When an attack reduces your HP, the attacker takes 1 HP back (reflected damage triggers no other effects).",
+        "hooks": { "reflectDamage": 1 }
+      }
+    }
+  ]
+}

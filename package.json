@@ -1,0 +1,10 @@
+{
+  "name": "monster-city-kaiju",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Monster City — Kaiju Edition. Static portrait mobile game (no build step).",
+  "scripts": {
+    "serve": "python3 -m http.server 8080"
+  }
+}

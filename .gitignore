@@ -1,0 +1,9 @@
+# OS / editor
+.DS_Store
+*.swp
+
+# local debug artifacts
+.shots/
+
+# python
+__pycache__/

@@ -1,0 +1,1000 @@
+{
+  "cards": [
+    {
+      "id": "army",
+      "name": "Army",
+      "cost": 2,
+      "type": "discard",
+      "count": 1,
+      "text": "(+ 1★ and suffer one damage) for each card you have.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "army"
+        }
+      ]
+    },
+    {
+      "id": "corner-store",
+      "name": "Corner Store",
+      "cost": 3,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 1★",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 1
+        }
+      ]
+    },
+    {
+      "id": "fire-blast",
+      "name": "Fire Blast",
+      "cost": 3,
+      "type": "discard",
+      "count": 1,
+      "text": "Deal 2 damage to all other monsters.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "damageOthers",
+          "n": 2
+        }
+      ]
+    },
+    {
+      "id": "heal",
+      "name": "Heal",
+      "cost": 3,
+      "type": "discard",
+      "count": 1,
+      "text": "Heal 2 damage.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "heal",
+          "n": 2
+        }
+      ]
+    },
+    {
+      "id": "national-guard",
+      "name": "National Guard",
+      "cost": 3,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 2★ and take 2 damage.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 2
+        },
+        {
+          "op": "damageSelf",
+          "n": 2
+        }
+      ]
+    },
+    {
+      "id": "commuter-train",
+      "name": "Commuter Train",
+      "cost": 4,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 2★",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 2
+        }
+      ]
+    },
+    {
+      "id": "high-altitude-bombing",
+      "name": "High Altitude Bombing",
+      "cost": 4,
+      "type": "discard",
+      "count": 1,
+      "text": "All monsters (including you) take 3 damage.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "damageAll",
+          "n": 3
+        }
+      ]
+    },
+    {
+      "id": "tanks",
+      "name": "Tanks",
+      "cost": 4,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 4★ and take 3 damage.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 4
+        },
+        {
+          "op": "damageSelf",
+          "n": 3
+        }
+      ]
+    },
+    {
+      "id": "apartment-building",
+      "name": "Apartment Building",
+      "cost": 5,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 3★",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 3
+        }
+      ]
+    },
+    {
+      "id": "drop-from-high-altitude",
+      "name": "Drop from High Altitude",
+      "cost": 5,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 2★ and take control of Tokyo if you don't already control it.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 2
+        },
+        {
+          "op": "captureTokyo"
+        }
+      ]
+    },
+    {
+      "id": "jet-fighters",
+      "name": "Jet Fighters",
+      "cost": 5,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 5★ and take 4 damage",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 5
+        },
+        {
+          "op": "damageSelf",
+          "n": 4
+        }
+      ]
+    },
+    {
+      "id": "amusement-park",
+      "name": "Amusement Park",
+      "cost": 6,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 4★",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 4
+        }
+      ]
+    },
+    {
+      "id": "gas-refinery",
+      "name": "Gas Refinery",
+      "cost": 6,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 2★ and deal 3 damage to all other monsters.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 2
+        },
+        {
+          "op": "damageOthers",
+          "n": 3
+        }
+      ]
+    },
+    {
+      "id": "nuclear-power-plant",
+      "name": "Nuclear Power Plant",
+      "cost": 6,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 2★ and heal 3 damage.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 2
+        },
+        {
+          "op": "heal",
+          "n": 3
+        }
+      ]
+    },
+    {
+      "id": "skyscraper",
+      "name": "Skyscraper",
+      "cost": 6,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 4★",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 4
+        }
+      ]
+    },
+    {
+      "id": "vast-storm",
+      "name": "Vast Storm",
+      "cost": 6,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 2★. All other monsters lose 1⚡︎ for every 2⚡︎ they have.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainVp",
+          "n": 2
+        },
+        {
+          "op": "energyDrainOthers"
+        }
+      ]
+    },
+    {
+      "id": "evacuation-orders",
+      "name": "Evacuation Orders",
+      "cost": 7,
+      "type": "discard",
+      "count": 2,
+      "text": "All other monsters lose 5★.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "vpOthers",
+          "n": 5
+        }
+      ]
+    },
+    {
+      "id": "frenzy",
+      "name": "Frenzy",
+      "cost": 7,
+      "type": "discard",
+      "count": 1,
+      "text": "When you purchase this card Take another turn immediately after this one.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "extraTurn"
+        }
+      ]
+    },
+    {
+      "id": "energize",
+      "name": "Energize",
+      "cost": 8,
+      "type": "discard",
+      "count": 1,
+      "text": "+ 9⚡︎",
+      "support": "full",
+      "effects": [
+        {
+          "op": "gainEnergy",
+          "n": 9
+        }
+      ]
+    },
+    {
+      "id": "made-in-a-lab",
+      "name": "Made in a Lab",
+      "cost": 2,
+      "type": "keep",
+      "count": 1,
+      "text": "When purchasing cards you can peek at and purchase the top card of the deck.",
+      "support": "text"
+    },
+    {
+      "id": "monster-batteries",
+      "name": "Monster Batteries",
+      "cost": 2,
+      "type": "keep",
+      "count": 1,
+      "text": "When you purchase this put as many ⚡︎ as you want on it from your reserve. Match this from the bank. At the start of each turn take 2⚡︎ off and add them to your reserve. When there are no ⚡︎ left discard this card.",
+      "support": "text"
+    },
+    {
+      "id": "solar-powered",
+      "name": "Solar Powered",
+      "cost": 2,
+      "type": "keep",
+      "count": 1,
+      "text": "At the end of your turn gain 1⚡︎ if you have no ⚡︎.",
+      "support": "full",
+      "hooks": {
+        "solar": true
+      }
+    },
+    {
+      "id": "alien-metabolism",
+      "name": "Alien Metabolism",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "Buying cards costs you 1 less ⚡︎.",
+      "support": "full",
+      "hooks": {
+        "cardDiscount": 1
+      }
+    },
+    {
+      "id": "camouflage",
+      "name": "Camouflage",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "If you take damage roll a die for each damage point. On a ♥ you do not take that damage point.",
+      "support": "full",
+      "hooks": {
+        "camouflage": true
+      }
+    },
+    {
+      "id": "complete-destruction",
+      "name": "Complete Destruction",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "If you roll ⚀⚁⚂♥🐾︎⚡︎ gain 9★ in addition to the regular results.",
+      "support": "full",
+      "hooks": {
+        "completeDestruction": 9
+      }
+    },
+    {
+      "id": "dedicated-news-team",
+      "name": "Dedicated News Team",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "Gain 1★ whenever you buy a card.",
+      "support": "full",
+      "hooks": {
+        "vpOnBuy": 1
+      }
+    },
+    {
+      "id": "energy-hoarder",
+      "name": "Energy Hoarder",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "You gain 1★ for every 6⚡︎ you have at the end of your turn.",
+      "support": "full",
+      "hooks": {
+        "energyHoarder": true
+      }
+    },
+    {
+      "id": "friend-of-children",
+      "name": "Friend of Children",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "When you gain any ⚡︎ gain 1 extra ⚡︎.",
+      "support": "full",
+      "hooks": {
+        "energyGainBonus": 1
+      }
+    },
+    {
+      "id": "herd-culler",
+      "name": "Herd Culler",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "You can change one of your dice to a ⚀ each turn.",
+      "support": "full",
+      "hooks": {
+        "setDie": {
+          "face": 1,
+          "uses": 1,
+          "per": "turn"
+        }
+      }
+    },
+    {
+      "id": "intimidating-roar",
+      "name": "Intimidating Roar",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "The monsters in Tokyo must yield if you damage them.",
+      "support": "full",
+      "hooks": {
+        "forceYield": true
+      }
+    },
+    {
+      "id": "metamorph",
+      "name": "Metamorph",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "At the end of your turn you can discard any keep cards you have to receive the ⚡︎ they were purchased for.",
+      "support": "text"
+    },
+    {
+      "id": "opportunist",
+      "name": "Opportunist",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "Whenever a new card is revealed you have the option of purchasing it as soon as it is revealed.",
+      "support": "text"
+    },
+    {
+      "id": "plot-twist",
+      "name": "Plot Twist",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "Change one die to any result. Discard when used.",
+      "support": "full",
+      "hooks": {
+        "setDie": {
+          "face": "any",
+          "uses": 1,
+          "per": "game",
+          "discardAfter": true
+        }
+      }
+    },
+    {
+      "id": "poison-quills",
+      "name": "Poison Quills",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "When you score ⚁⚁⚁ also deal 2 damage.",
+      "support": "full",
+      "hooks": {
+        "tripleDamage": {
+          "face": 2,
+          "amount": 2
+        }
+      }
+    },
+    {
+      "id": "psychic-probe",
+      "name": "Psychic Probe",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "You can reroll a die of each other monster once each turn. If the reroll is ♥ discard this card.",
+      "support": "text"
+    },
+    {
+      "id": "rapid-healing",
+      "name": "Rapid Healing",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "Spend 2⚡︎ at any time to heal 1 damage.",
+      "support": "full",
+      "hooks": {
+        "rapidHeal": {
+          "cost": 2
+        }
+      }
+    },
+    {
+      "id": "rooting-for-the-underdog",
+      "name": "Rooting for the Underdog",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "At the end of a turn when you have the fewest ★ gain 1 ★.",
+      "support": "full",
+      "hooks": {
+        "underdog": true
+      }
+    },
+    {
+      "id": "sleep-walker",
+      "name": "Sleep Walker",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "Spend 3⚡︎ to gain 1★.",
+      "support": "full",
+      "hooks": {
+        "spendForVp": {
+          "cost": 3,
+          "vp": 1
+        }
+      }
+    },
+    {
+      "id": "stretchy",
+      "name": "Stretchy",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "You can spend 2⚡︎ to change one of your dice to any result.",
+      "support": "full",
+      "hooks": {
+        "setDie": {
+          "face": "any",
+          "uses": 1,
+          "per": "turn",
+          "cost": 2
+        }
+      }
+    },
+    {
+      "id": "thunder-stomp",
+      "name": "Thunder Stomp",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "If you score 4★ in a turn, all players roll one less die until your next turn.",
+      "support": "full",
+      "hooks": {
+        "thunderStomp": true
+      }
+    },
+    {
+      "id": "unstable-dna",
+      "name": "Unstable DNA",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "If you yield Tokyo you can take any card the recipient has and give him this card.",
+      "support": "text"
+    },
+    {
+      "id": "we-re-only-making-it-stronger",
+      "name": "We're Only Making It Stronger",
+      "cost": 3,
+      "type": "keep",
+      "count": 1,
+      "text": "When you lose 2♥ or more gain 1⚡︎.",
+      "support": "full",
+      "hooks": {
+        "onLoseHp2": {
+          "energy": 1
+        }
+      }
+    },
+    {
+      "id": "armor-plating",
+      "name": "Armor Plating",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "Ignore damage of 1.",
+      "support": "full",
+      "hooks": {
+        "incomingReduce": 1
+      }
+    },
+    {
+      "id": "background-dweller",
+      "name": "Background Dweller",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "You can always reroll any ⚂ you have.",
+      "support": "full"
+    },
+    {
+      "id": "eater-of-the-dead",
+      "name": "Eater of the Dead",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "Gain 3★ every time a monster's ♥ goes to 0.",
+      "support": "full",
+      "hooks": {
+        "vpOnDeath": 3
+      }
+    },
+    {
+      "id": "even-bigger",
+      "name": "Even Bigger",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "Your maximum ♥ is increased by 2. Gain 2♥ when you get this card.",
+      "support": "full",
+      "effects": [
+        {
+          "op": "maxHp",
+          "n": 2,
+          "gainNow": 2
+        }
+      ],
+      "hooks": {
+        "maxHp": 2
+      }
+    },
+    {
+      "id": "fire-breathing",
+      "name": "Fire Breathing",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "Your neighbors take 1 extra damage when you deal damage",
+      "support": "full",
+      "hooks": {
+        "fireBreathing": 1
+      }
+    },
+    {
+      "id": "gourmet",
+      "name": "Gourmet",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "When scoring ⚀⚀⚀ gain 2 extra ★.",
+      "support": "full",
+      "hooks": {
+        "tripleVp": {
+          "face": 1,
+          "extra": 2
+        }
+      }
+    },
+    {
+      "id": "healing-ray",
+      "name": "Healing Ray",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "You can heal other monsters with your ♥ results. They must pay you 2⚡︎ for each damage you heal (or their remaining ⚡︎ if they haven't got enough.",
+      "support": "text"
+    },
+    {
+      "id": "monster-sidekick",
+      "name": "Monster Sidekick",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "If someone kills you, Go back to 10♥ and lose all your ★. If either of you or your killer win, or all other players are eliminated then you both win. If your killer is eliminated then you are also. If you are eliminated a second time this card has no effect.",
+      "support": "text"
+    },
+    {
+      "id": "omnivore",
+      "name": "Omnivore",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "Once each turn you can score ⚀⚁⚂ for 2★. You can use these dice in other combinations.",
+      "support": "full",
+      "hooks": {
+        "omnivore": true
+      }
+    },
+    {
+      "id": "parasitic-tentacles",
+      "name": "Parasitic Tentacles",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "You can purchase cards from other monsters. Pay them the ⚡︎ cost.",
+      "support": "text"
+    },
+    {
+      "id": "poison-spit",
+      "name": "Poison Spit",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "When you deal damage to monsters give them a poison counter. Monsters take 1 damage for each poison counter they have at the end of their turn. You can get rid of a poison counter with a ♥ (that ♥ doesn't heal a damage also).",
+      "support": "full",
+      "hooks": {
+        "poison": true
+      }
+    },
+    {
+      "id": "regeneration",
+      "name": "Regeneration",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "When you heal, heal 1 extra damage.",
+      "support": "full",
+      "hooks": {
+        "healBonus": 1
+      }
+    },
+    {
+      "id": "smoke-cloud",
+      "name": "Smoke Cloud",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "This card starts with 3 charges. Spend a charge for an extra reroll. Discard this card when all charges are spent.",
+      "support": "full",
+      "hooks": {
+        "smokeCloud": {
+          "charges": 3
+        }
+      }
+    },
+    {
+      "id": "super-jump",
+      "name": "Super Jump",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "Once each turn you may spend 1⚡︎ to negate 1 damage you are receiving.",
+      "support": "full",
+      "hooks": {
+        "superJump": {
+          "cost": 1
+        }
+      }
+    },
+    {
+      "id": "telepath",
+      "name": "Telepath",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "Spend 1⚡︎ to get 1 extra reroll.",
+      "support": "full",
+      "hooks": {
+        "telepath": {
+          "cost": 1,
+          "rerolls": 1
+        }
+      }
+    },
+    {
+      "id": "throw-a-tanker",
+      "name": "Throw a Tanker",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "On a turn you deal 3 or more damage gain 2★.",
+      "support": "full",
+      "hooks": {
+        "tanker": {
+          "threshold": 3,
+          "vp": 2
+        }
+      }
+    },
+    {
+      "id": "urbavore",
+      "name": "Urbavore",
+      "cost": 4,
+      "type": "keep",
+      "count": 1,
+      "text": "Gain 1 extra ★ when beginning the turn in Tokyo. Deal 1 extra damage when dealing any damage from Tokyo.",
+      "support": "full",
+      "hooks": {
+        "vpStartBonus": 1,
+        "attackFromTokyo": 1
+      }
+    },
+    {
+      "id": "alpha-monster",
+      "name": "Alpha Monster",
+      "cost": 5,
+      "type": "keep",
+      "count": 1,
+      "text": "Gain 1★ when you attack.",
+      "support": "full",
+      "hooks": {
+        "vpOnAttack": 1
+      }
+    },
+    {
+      "id": "burrowing",
+      "name": "Burrowing",
+      "cost": 5,
+      "type": "keep",
+      "count": 1,
+      "text": "Deal 1 extra damage on Tokyo. Deal 1 damage when yielding Tokyo to the monster taking it.",
+      "support": "full",
+      "hooks": {
+        "attackFromTokyo": 1,
+        "yieldDamage": 1
+      }
+    },
+    {
+      "id": "cannibalistic",
+      "name": "Cannibalistic",
+      "cost": 5,
+      "type": "keep",
+      "count": 1,
+      "text": "When you do damage gain 1♥.",
+      "support": "full",
+      "hooks": {
+        "onDamageDealtHeal": 1
+      }
+    },
+    {
+      "id": "freeze-time",
+      "name": "Freeze Time",
+      "cost": 5,
+      "type": "keep",
+      "count": 1,
+      "text": "On a turn where you score ⚀⚀⚀, you can take another turn with one less die.",
+      "support": "full",
+      "hooks": {
+        "freezeTime": true
+      }
+    },
+    {
+      "id": "giant-brain",
+      "name": "Giant Brain",
+      "cost": 5,
+      "type": "keep",
+      "count": 1,
+      "text": "You have one extra reroll each turn.",
+      "support": "full",
+      "hooks": {
+        "rerollsBonus": 1
+      }
+    },
+    {
+      "id": "herbivore",
+      "name": "Herbivore",
+      "cost": 5,
+      "type": "keep",
+      "count": 1,
+      "text": "Gain 1★ on your turn if you don't damage anyone.",
+      "support": "full",
+      "hooks": {
+        "herbivore": true
+      }
+    },
+    {
+      "id": "jets",
+      "name": "Jets",
+      "cost": 5,
+      "type": "keep",
+      "count": 1,
+      "text": "You suffer no damage when yielding Tokyo.",
+      "support": "full",
+      "hooks": {
+        "yieldImmune": true
+      }
+    },
+    {
+      "id": "spiked-tail",
+      "name": "Spiked Tail",
+      "cost": 5,
+      "type": "keep",
+      "count": 1,
+      "text": "When you attack deal 1 extra damage.",
+      "support": "full",
+      "hooks": {
+        "attackDamageBonus": 1
+      }
+    },
+    {
+      "id": "acid-attack",
+      "name": "Acid Attack",
+      "cost": 6,
+      "type": "keep",
+      "count": 1,
+      "text": "Deal 1 extra damage each turn (even when you don't otherwise attack).",
+      "support": "full",
+      "hooks": {
+        "autoAttack": 1
+      }
+    },
+    {
+      "id": "reflective-hide",
+      "name": "Reflective Hide",
+      "cost": 6,
+      "type": "keep",
+      "count": 1,
+      "text": "If you suffer damage the monster that inflicted the damage suffers 1 as well.",
+      "support": "full",
+      "hooks": {
+        "reflect": 1
+      }
+    },
+    {
+      "id": "shrink-ray",
+      "name": "Shrink Ray",
+      "cost": 6,
+      "type": "keep",
+      "count": 1,
+      "text": "When you deal damage to monsters give them a shrink counter. A monster rolls one less die for each shrink counter. You can get rid of a shrink counter with a ♥ (that ♥ doesn't heal a damage also).",
+      "support": "full",
+      "hooks": {
+        "shrink": true
+      }
+    },
+    {
+      "id": "wings",
+      "name": "Wings",
+      "cost": 6,
+      "type": "keep",
+      "count": 1,
+      "text": "Spend 2⚡︎ to negate damage to you for a turn.",
+      "support": "full",
+      "hooks": {
+        "wings": {
+          "cost": 2
+        }
+      }
+    },
+    {
+      "id": "extra-head",
+      "name": "Extra Head",
+      "cost": 7,
+      "type": "keep",
+      "count": 2,
+      "text": "You get 1 extra die.",
+      "support": "full",
+      "hooks": {
+        "diceBonus": 1
+      }
+    },
+    {
+      "id": "it-has-a-child",
+      "name": "It Has a Child",
+      "cost": 7,
+      "type": "keep",
+      "count": 1,
+      "text": "If you are eliminated discard all your cards and lose all your ★, Heal to 10♥ and start again.",
+      "support": "full",
+      "hooks": {
+        "revive": true
+      }
+    },
+    {
+      "id": "nova-breath",
+      "name": "Nova Breath",
+      "cost": 7,
+      "type": "keep",
+      "count": 1,
+      "text": "Your attacks damage all other monsters.",
+      "support": "full",
+      "hooks": {
+        "hitAll": true
+      }
+    },
+    {
+      "id": "mimic",
+      "name": "Mimic",
+      "cost": 8,
+      "type": "keep",
+      "count": 1,
+      "text": "Choose a card any monster has in play and put a mimic counter on it. This card counts as a duplicate of that card as if it just had been bought. Spend 1⚡︎ at the start of your turn to change the power you are mimicking.",
+      "support": "text"
+    }
+  ]
+}

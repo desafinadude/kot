@@ -2,10 +2,6 @@
   "_readme": "Art manifest (v3). Generate art per assets/art/README.md, drop files into assets/art/, ensure 'src' points at them. Missing files keep ink placeholders (emoji:/css: fallbacks only where still relevant). Zones & dice art are deprecated: districts render on a real Leaflet map, dice faces use js/icons.js.",
   "version": 3,
   "assets": {
-    "background": {
-      "src": "assets/art/bg_tokyo_night.webp?v=1",
-      "fallback": "none:"
-    },
     "monster_ryuga": {
       "src": "assets/art/monsters/ryuga.webp?v=2",
       "fallback": "none:"

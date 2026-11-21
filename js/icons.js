@@ -81,7 +81,7 @@ export function icon(name, size = 16, { filled = false, cls = '' } = {}) {
   return `<svg class="icn ${cls}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${fillMode}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shapes.map(shapeEl).join('')}</svg>`;
 }
 
-/** Draw an icon on a 2D canvas context (used by the physics dice). */
+/** Draw an icon on a 2D canvas context. */
 export function drawIcon(ctx, name, x, y, size, { color = '#2b2418', filled = false, lineWidth = 2 } = {}) {
   const shapes = S[name] || S.spark;
   const k = size / 24;

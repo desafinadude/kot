@@ -1,7 +1,7 @@
 // Bootstrap: data → setup screen → game.
-import { loadData, mountArt, fallbackHTML } from './data.js';
+import { loadData, mountArt, fallbackHTML, preloadArt } from './data.js?v=2';
 import { Game } from './engine.js';
-import { createUI } from './ui.js?v=7';
+import { createUI } from './ui.js?v=9';
 import { createShakeDetector } from './shake.js';
 import { icon } from './icons.js';
 import { portrait } from './portrait.js';
@@ -11,13 +11,14 @@ const $ = (id) => document.getElementById(id);
 
 const data = await loadData();
 const art = data.art;
+preloadArt(art);   // warm cache (cards first) so the shop shows art instantly
 let count = 2;
 let selected = [];
 let mode = 'bots';
 let ui = null;
 
 // ── shake (permission asked on Start tap = valid user gesture) ─────────────
-const shake = createShakeDetector(() => ui?.onShake?.(), (m) => ui?.onMotion?.(m));
+const shake = createShakeDetector(() => ui?.onShake?.());
 const shakeApi = {
   get enabled() { return shake.enabled; },
   async toggle() {
@@ -86,16 +87,6 @@ document.querySelectorAll('#modeToggle .mode-btn').forEach((b) => {
     document.querySelectorAll('#modeToggle .mode-btn').forEach((x) => x.classList.toggle('active', x === b));
     if (mode === 'bots') selected = selected.slice(0, 1);
     renderGrid(); updateStart();
-  };
-});
-
-// dice style: gravity physics vs faces that appear & change in place
-const diceMode = localStorage.getItem('mc-dice') || 'gravity';
-document.querySelectorAll('#diceToggle .mode-btn').forEach((b) => {
-  b.classList.toggle('active', b.dataset.dice === diceMode);
-  b.onclick = () => {
-    localStorage.setItem('mc-dice', b.dataset.dice);
-    document.querySelectorAll('#diceToggle .mode-btn').forEach((x) => x.classList.toggle('active', x === b));
   };
 });
 

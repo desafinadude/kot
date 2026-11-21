@@ -1,10 +1,9 @@
 // Game screen rendering + interaction. Pure DOM, no framework.
 import { FACE_GLYPH } from './engine.js';
-import { mountArt } from './data.js';
+import { mountArt } from './data.js?v=2';
 import { icon } from './icons.js';
 import { portrait } from './portrait.js';
 import { sfx } from './sfx.js';
-import { createDicePhysics } from './physics.js?v=5';
 
 const $ = (id) => document.getElementById(id);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -14,7 +13,7 @@ export function createUI(game) {
     chip: $('turnChip'), ticker: $('ticker'), map: $('map'), players: $('players'),
     mapTip: $('mapTip'), announce: $('announceWrap'),
     abilities: $('abilities'), diceStage: $('diceStage'), diceFaces: $('diceFaces'),
-    diceCanvas: $('diceCanvas'), diceHint: $('diceHint'),
+    diceHint: $('diceHint'),
     primary: $('btnPrimary'),
     secondary: $('btnSecondary'), shopBtn: $('btnShop'),
     backdrop: $('backdrop'), modal: $('modal'), win: $('winOverlay'),
@@ -22,19 +21,6 @@ export function createUI(game) {
     cardList: $('cardList'), shopEnergy: $('shopEnergy'), shopNote: $('shopNote'),
     sweep: $('btnSweep'), logList: $('logList'), rulesBody: $('rulesBody'),
   };
-  // gravity dice — Matter.js; null → DOM fallback dice (also when the menu
-  // turns gravity off: faces appear & change in place, no flight)
-  let phys = localStorage.getItem('mc-dice') === 'flat'
-    ? null
-    : createDicePhysics(els.diceCanvas, {
-        onTap: (i) => {
-          if (!game.state) return;
-          if (game.state.phase === 'awaitRoll') { primary(); return; }
-          if (i >= 0) onDieTap(i);
-        },
-      });
-  if (phys) { els.diceFaces.classList.add('hidden'); els.diceCanvas.classList.remove('hidden'); }
-  window.__phys = phys;   // debug/test handle
   // static map scaffold: base drawing + persistent fx layer (beams survive re-renders)
   els.map.innerHTML = '<svg class="tokyo-svg" id="mapBase" viewBox="0 0 460 260" shape-rendering="crispEdges"></svg><svg class="map-fx" id="mapFx" viewBox="0 0 460 260"></svg>';
   els.mapBase = $('mapBase');
@@ -118,7 +104,7 @@ export function createUI(game) {
 
   function phaseText(p) {
     const s = game.state;
-    const sh = shakeApi?.enabled ? ' · tilt & shake' : '';
+    const sh = shakeApi?.enabled ? ' · shake' : '';
     switch (s.phase) {
       case 'awaitRoll': return p.zone != null ? `in ${game.district(p.zone).short} · tap to roll${sh}` : `tap to roll${sh}`;
       case 'rolled': return s.rerollsLeft > 0 ? `tap dice to keep · ${s.rerollsLeft} reroll${s.rerollsLeft > 1 ? 's' : ''} left` : 'dice locked in · resolve';
@@ -333,8 +319,9 @@ export function createUI(game) {
       return `
       <div class="p-card ${myTurn ? 'active' : ''} ${p.alive ? '' : 'dead'}" id="card-${p.seat}" style="--pc:${p.color}">
         <div class="pc-name">${p.name}</div>
-        <div class="pc-pic">
+        <div class="pc-pic" data-seat="${p.seat}" title="tap to see cards">
           <span class="pc-sprite">${portrait(p, 44)}</span>
+          ${p.cards.length ? `<span class="pc-deck">🃏×${p.cards.length}</span>` : ''}
           ${p.alive ? '' : `<span class="pc-ko">${icon('skull', 15)}</span>`}
           ${myTurn ? '<span class="pc-go">GO</span>' : ''}
         </div>
@@ -352,9 +339,26 @@ export function createUI(game) {
     const n = s.players.length;
     const cols = n === 2 ? 2 : n === 4 ? 4 : 3;   // vertical cards: 4 abreast fits a phone
     els.players.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-    els.players.style.setProperty('--pic', `${n === 2 ? 96 : n === 4 ? 56 : n === 3 ? 64 : 44}px`);
+    els.players.style.setProperty('--pic', `${n === 2 ? 128 : n === 4 ? 62 : n === 3 ? 84 : 48}px`);
     [...els.players.querySelectorAll('.pc-sprite')].forEach((el, i) => mountArt(el, art, `monster_${s.players[i].monsterId}`));
+    els.players.querySelectorAll('.pc-pic').forEach((el) => {
+      el.onclick = () => showDeck(+el.dataset.seat);
+    });
     checkDiffs(s);
+  }
+
+  /** Tap a character portrait → see exactly which cards that player owns. */
+  function showDeck(seat) {
+    const p = game.state.players[seat];
+    const owned = p.cards || [];
+    const body = owned.length
+      ? owned.map((c) => {
+          const def = c.def || game.cardById[c.id];
+          if (!def) return '';
+          return `<span class="deck-row"><span class="c-name">${def.name}</span><span class="c-text">${def.text}</span></span>`;
+        }).join('')
+      : '<span class="deck-empty">No cards yet — buy some in the Card Market.</span>';
+    modal({ title: `${p.name} · CARDS ×${owned.length}`, body, actions: [{ label: 'CLOSE', value: 0 }] });
   }
 
   function faceClass(f) { return f ? `f-${f}` : ''; }
@@ -363,13 +367,6 @@ export function createUI(game) {
     const s = game.state, p = game.me();
     const n = s.dice.length || game.diceCount(p);
     const hint = diceHint(s);
-    if (phys) {
-      phys.sync(s.dice.length ? s.dice : Array(n).fill('?'), s.phase === 'awaitRoll' ? [] : s.keep);
-      phys.setGlow(stageFaces);
-      els.diceHint.textContent = hint;
-      phys.resize();
-      return;
-    }
     const DIE_FACE = (f) => (f === 'energy' ? icon('zap', 21) : f === 'attack' ? icon('paw', 23) : f === 'heal' ? icon('heart', 21, { filled: true }) : FACE_GLYPH[f]);
     const toneOf = (f) => (['1', '2', '3'].includes(f) ? 'gold' : f === 'energy' ? 'cyan' : f === 'attack' ? 'red' : 'green');
     let html = '';
@@ -391,9 +388,9 @@ export function createUI(game) {
 
   function diceHint(s) {
     if (s.phase === 'rolled') {
-      return armed ? 'tap a die to shape it' : (shakeApi?.enabled ? 'tap a die to keep · tilt or shake the phone' : 'tap a die to keep');
+      return armed ? 'tap a die to shape it' : (shakeApi?.enabled ? 'tap a die to keep · shake the phone' : 'tap a die to keep');
     }
-    if (s.phase === 'awaitRoll') return shakeApi?.enabled ? 'SHAKE, tilt, or tap ROLL' : 'tap ROLL to throw the dice';
+    if (s.phase === 'awaitRoll') return shakeApi?.enabled ? 'SHAKE or tap ROLL' : 'tap ROLL to throw the dice';
     return '';
   }
 
@@ -466,9 +463,8 @@ export function createUI(game) {
   // ── actions ──────────────────────────────────────────────────────────────
   async function animateRoll() {
     rolling = true; sfx.roll();
-    render();   // sync faces/count first — bodies must exist before launch
-    phys?.launch({ keepMask: game.state.phase === 'rolled' ? [...game.state.keep] : [] });
-    await sleep(phys ? 340 : 430);
+    render();
+    await sleep(430);
     return () => { rolling = false; };
   }
 
@@ -514,16 +510,9 @@ export function createUI(game) {
 
   /** Shake handler — same as the primary button, but only when safe. */
   function onShake() {
-    phys?.jolt();
     const s = game.state;
     if (!s || s.winner != null || modalOpen() || openSheet) return;
     if (s.phase === 'awaitRoll' || (s.phase === 'rolled' && s.rerollsLeft > 0)) primary();
-  }
-
-  function onMotion(m) {
-    if (!phys) return;
-    phys.enableTilt(true);
-    phys.setGravity(m.x, m.y, m.z);
   }
 
   // ── staged resolve choreography ─────────────────────────────────────────
@@ -543,7 +532,7 @@ export function createUI(game) {
 
   function setStageGlow(set) {
     stageFaces = set;
-    if (phys) { phys.setGlow(set); if (set) phys.hop(set); } else renderDice();
+    renderDice();
   }
 
   async function stage(name, ctx = {}) {
@@ -577,7 +566,7 @@ export function createUI(game) {
           await sleep(750);
           break;
         case 'strike':
-          drawBeams(ctx); sfx.windup(); phys?.hop('all');
+          drawBeams(ctx); sfx.windup();
           await sleep(900);
           break;
         case 'hit':
@@ -625,7 +614,7 @@ export function createUI(game) {
         <div class="c-main">
           <div class="c-top"><span class="c-name">${def.name}</span><span class="c-type ${def.type}">${def.type.toUpperCase()}</span></div>
           <div class="c-text">${def.text}</div>
-          ${def.support === 'text' ? '<div class="c-tag">complex card — resolve its text manually</div>' : ''}
+
         </div>
       </button>`;
     }).join('');
@@ -716,7 +705,6 @@ export function createUI(game) {
     setArt(a) { art = a; },
     setShake(api) { shakeApi = api; },
     onShake,
-    onMotion,
     get busy() { return modalOpen() || openSheet != null; },
   };
 }

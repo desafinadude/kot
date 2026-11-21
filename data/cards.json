@@ -310,24 +310,6 @@
       ]
     },
     {
-      "id": "made-in-a-lab",
-      "name": "Made in a Lab",
-      "cost": 2,
-      "type": "keep",
-      "count": 1,
-      "text": "When purchasing cards you can peek at and purchase the top card of the deck.",
-      "support": "text"
-    },
-    {
-      "id": "monster-batteries",
-      "name": "Monster Batteries",
-      "cost": 2,
-      "type": "keep",
-      "count": 1,
-      "text": "When you purchase this put as many ⚡︎ as you want on it from your reserve. Match this from the bank. At the start of each turn take 2⚡︎ off and add them to your reserve. When there are no ⚡︎ left discard this card.",
-      "support": "text"
-    },
-    {
       "id": "solar-powered",
       "name": "Solar Powered",
       "cost": 2,
@@ -440,24 +422,6 @@
       }
     },
     {
-      "id": "metamorph",
-      "name": "Metamorph",
-      "cost": 3,
-      "type": "keep",
-      "count": 1,
-      "text": "At the end of your turn you can discard any keep cards you have to receive the ⚡︎ they were purchased for.",
-      "support": "text"
-    },
-    {
-      "id": "opportunist",
-      "name": "Opportunist",
-      "cost": 3,
-      "type": "keep",
-      "count": 1,
-      "text": "Whenever a new card is revealed you have the option of purchasing it as soon as it is revealed.",
-      "support": "text"
-    },
-    {
       "id": "plot-twist",
       "name": "Plot Twist",
       "cost": 3,
@@ -488,15 +452,6 @@
           "amount": 2
         }
       }
-    },
-    {
-      "id": "psychic-probe",
-      "name": "Psychic Probe",
-      "cost": 3,
-      "type": "keep",
-      "count": 1,
-      "text": "You can reroll a die of each other monster once each turn. If the reroll is ♥ discard this card.",
-      "support": "text"
     },
     {
       "id": "rapid-healing",
@@ -567,15 +522,6 @@
       "hooks": {
         "thunderStomp": true
       }
-    },
-    {
-      "id": "unstable-dna",
-      "name": "Unstable DNA",
-      "cost": 3,
-      "type": "keep",
-      "count": 1,
-      "text": "If you yield Tokyo you can take any card the recipient has and give him this card.",
-      "support": "text"
     },
     {
       "id": "we-re-only-making-it-stronger",
@@ -671,24 +617,6 @@
       }
     },
     {
-      "id": "healing-ray",
-      "name": "Healing Ray",
-      "cost": 4,
-      "type": "keep",
-      "count": 1,
-      "text": "You can heal other monsters with your ♥ results. They must pay you 2⚡︎ for each damage you heal (or their remaining ⚡︎ if they haven't got enough.",
-      "support": "text"
-    },
-    {
-      "id": "monster-sidekick",
-      "name": "Monster Sidekick",
-      "cost": 4,
-      "type": "keep",
-      "count": 1,
-      "text": "If someone kills you, Go back to 10♥ and lose all your ★. If either of you or your killer win, or all other players are eliminated then you both win. If your killer is eliminated then you are also. If you are eliminated a second time this card has no effect.",
-      "support": "text"
-    },
-    {
       "id": "omnivore",
       "name": "Omnivore",
       "cost": 4,
@@ -699,15 +627,6 @@
       "hooks": {
         "omnivore": true
       }
-    },
-    {
-      "id": "parasitic-tentacles",
-      "name": "Parasitic Tentacles",
-      "cost": 4,
-      "type": "keep",
-      "count": 1,
-      "text": "You can purchase cards from other monsters. Pay them the ⚡︎ cost.",
-      "support": "text"
     },
     {
       "id": "poison-spit",
@@ -986,15 +905,6 @@
       "hooks": {
         "hitAll": true
       }
-    },
-    {
-      "id": "mimic",
-      "name": "Mimic",
-      "cost": 8,
-      "type": "keep",
-      "count": 1,
-      "text": "Choose a card any monster has in play and put a mimic counter on it. This card counts as a duplicate of that card as if it just had been bought. Spend 1⚡︎ at the start of your turn to change the power you are mimicking.",
-      "support": "text"
     }
   ]
 }

@@ -162,16 +162,6 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 .m-card.picked { border-color: var(--m-c, var(--seal)); box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 5px 0 -1px rgba(43,33,24,.3), 0 0 0 2.5px var(--m-c, var(--seal)), 0 16px 26px -12px rgba(43,33,24,.55); transform: rotate(0deg) scale(1.02); }
-.m-card.picked::before { /* washi tape */
-  content: ""; position: absolute; top: -7px; left: 50%;
-  width: 74px; height: 16px; margin-left: -37px;
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.4) 0 5px, transparent 5px 10px),
-    rgba(178,58,46,.45);
-  box-shadow: 0 1px 2px rgba(43,33,24,.3);
-  transform: rotate(-3deg);
-  z-index: 3; pointer-events: none;
-}
 .m-card .m-order {
   position: absolute; top: 5px; left: 5px;
   min-width: 22px; height: 22px; padding: 0 5px;
@@ -350,7 +340,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .players {
   display: grid; gap: 9px;
   flex: 1 1 auto; min-height: 0; max-height: clamp(160px, 30vh, 260px);
-  overflow: visible; /* seals, tape and floating badges must not be sheared */
+  overflow: visible; /* seals and floating badges must not be sheared */
   grid-auto-rows: minmax(118px, 1fr); align-content: stretch;
 }
 .players .p-card { min-width: 0; }
@@ -400,16 +390,16 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   box-shadow: 3px 5px 0 -1px rgba(43,33,24,.32), 0 12px 18px -8px rgba(43,33,24,.5);
   transform: rotate(-2.2deg);
   z-index: 2;
+  cursor: pointer;
 }
-.pc-pic::before { /* washi tape */
-  content: ""; position: absolute; top: -7px; left: -13px;
-  width: 60%; min-width: 54px; height: 15px;
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.4) 0 5px, transparent 5px 10px),
-    rgba(53, 98, 127, .42);
-  box-shadow: 0 1px 2px rgba(43,33,24,.3);
-  transform: rotate(-40deg);
-  z-index: 3; pointer-events: none;
+.pc-deck { /* “this player owns cards” badge on the portrait */
+  position: absolute; top: -8px; left: -8px;
+  font-family: var(--font-display); font-weight: 700; font-size: 10px; line-height: 1;
+  padding: 3px 6px; background: var(--ink); color: var(--paper-hi);
+  border: 1.5px solid var(--paper-hi); border-radius: 10px;
+  box-shadow: 1px 2px 0 rgba(43,33,24,.4);
+  transform: rotate(-6deg);
+  z-index: 6; pointer-events: none;
 }
 .pc-pic .pc-sprite { display: grid; place-items: center; line-height: 0; width: 100%; height: 100%; overflow: hidden; }
 .pc-pic .pc-sprite svg, .pc-pic img { width: 100%; height: 100%; object-fit: cover; }
@@ -660,6 +650,12 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 .modal-card p { font-size: 13px; color: var(--ink-soft); margin-bottom: 14px; line-height: 1.6; }
 .modal-card p b { color: var(--ink); }
+/* deck modal (tap a player portrait) */
+.deck-row { display: block; padding: 7px 0; border-bottom: 1px dashed var(--ink-line); }
+.deck-row:last-child { border-bottom: 0; }
+.deck-row .c-name { display: block; }
+.deck-row .c-text { display: block; }
+.deck-empty { font-family: var(--font-hand); color: var(--ink-soft); }
 .modal-actions { display: flex; flex-direction: column; gap: 8px; }
 .modal-actions.row { flex-direction: row; flex-wrap: wrap; }
 .modal-actions .btn-ghost { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }

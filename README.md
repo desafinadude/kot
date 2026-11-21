@@ -84,17 +84,15 @@ npm run serve          # no-cache dev server (tools/serve.py) — avoids stale p
   palace, outsiders camp at 野, dotted ink roads, a pale sea band. Tap a seal
   for its perk/drawback; captures flash the seal; attack beams are animated
   dashed ink lines drawn between monster tokens on a persistent overlay.
-- **Gravity dice (Matter.js)** — dice tumble with real physics on roll,
-  hop during their resolve stage, tilt your phone to make them slide
-  (device gravity drives the world), shake adds jolts, tap a die to keep it.
-  DOM dice remain as fallback. **Requires internet on first load** (Matter.js
-  via CDN).
+- **In-place dice** — faces tumble and change in place in the tray; tap a
+  die to keep it, shake (or tap ROLL) to throw. No physics library, works
+  fully offline.
 - **Icons**: Lucide-style line set (`js/icons.js`) for everything in the UI.
   Characters are ink-swatch placeholders until real art is imported —
   specs in `assets/art/README.md` (1024×1024, transparent, ink & wash).
 - **Brush craft (v4)**: SVG brush-stroke backgrounds (primary button, announce
-  banners, title/sheet underlines), ink-splatter around the title, washi tape
-  on portraits, angled everything (cards ±1°, banners −3.2°, tags −2.5°),
+  banners, title/sheet underlines), ink-splatter around the title,
+  angled everything (cards ±1°, banners −3.2°, tags −2.5°),
   lifted paper drop-shadows, stretched hero player cards (portrait up to
   104px for 2-player games), vertical calligraphy ribbon on the map.
 
@@ -107,10 +105,9 @@ js/engine.js              rules engine — dice, attacks, zones, cards, hooks, s
 js/ui.js                  rendering, static ink map, player cards, sheets, sequencer
 js/icons.js               Lucide-style line-icon library (UI icons + canvas dice faces)
 js/portrait.js            character ART PLACEHOLDERS (kanji swatches) — see assets/art/README.md
-js/physics.js             Matter.js gravity dice (roll impulses, tilt gravity, tap-to-pick)
 js/sfx.js                 tiny WebAudio sound FX (no assets) + toggle
 js/main.js                bootstrap + monster-select setup screen
-js/shake.js               DeviceMotion shake detector + raw motion passthrough (tilt)
+js/shake.js               DeviceMotion shake detector (shake to roll)
 js/data.js                JSON loading + art-manifest fallback loader
 data/monsters.json        the 6 kaiju + powers (hooks)
 data/zones.json           districts, perks, unlock rules

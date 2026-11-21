@@ -2,7 +2,7 @@
 // Uses the delta of acceleration magnitude — a firm shake of ~2–3 quick
 // movements trips it; steady holding does not. iOS needs a user-gesture
 // permission grant, which we request when the player taps Start.
-// onMotion receives every raw acceleration sample while enabled (dice tilt).
+// onMotion receives every raw acceleration sample while enabled (optional).
 
 const SHAKE_THRESHOLD = 13; // m/s² summed delta across axes
 const COOLDOWN_MS = 650;

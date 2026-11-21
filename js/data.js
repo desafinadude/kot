@@ -28,6 +28,22 @@ export function fallbackClass(art, key) {
 const failedArt = new Set();
 
 /**
+ * Warm the browser cache for every art src (cards first) so images appear
+ * instantly the first time they're shown. Safe to call once at boot.
+ */
+export function preloadArt(art) {
+  const entries = Object.values(art).filter((a) => a?.src && !failedArt.has(a.src));
+  entries.sort((a, b) => (b.src.includes('/cards/') ? 1 : 0) - (a.src.includes('/cards/') ? 1 : 0));
+  for (const a of entries) {
+    const img = new Image();
+    img.decoding = 'async';
+    img.fetchPriority = 'low';
+    img.onerror = () => failedArt.add(a.src);
+    img.src = a.src;
+  }
+}
+
+/**
  * Show the fallback immediately; upgrade to real art when/if the file loads.
  * mode: 'content' (replace children) | 'background' (tile the element bg)
  */
@@ -49,4 +65,6 @@ export function mountArt(el, art, key, mode = 'content') {
   };
   img.onerror = () => { failedArt.add(a.src); }; // keep the fallback, don't re-probe
   img.src = a.src;
+  // already cached (preloaded) → paint synchronously, no flash of fallback
+  if (img.complete && img.naturalWidth) img.onload();
 }

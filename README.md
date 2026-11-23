@@ -1,156 +1,115 @@
-# Monster City — Kaiju Edition 👑🦖
+# YOKOZUNA — The Road to Grand Champion 横綱
 
-A portrait-format mobile game (static web app, no build step) — giant monsters
-rampage through a city for Victory Points: **6 fictional Japanese titans** and
-**4 districts** with their own perks and drawbacks.
+A portrait-format mobile dice-and-card battle set in a fictional grand sumo
+tournament (static web app, no build step). Pick one of **six rikishi**, each
+with a real signature power, fight for the **dohyō**, collect Fighting Spirit,
+learn techniques from a **20-card market**, and climb the ranks to Yokozuna.
+
+2–6 players · VS CPU or pass & play · 25–35 minutes.
+
+> Unofficial, fictional sumo retheme of a *King of Tokyo*-style engine.
+> Characters, powers, names and art are original. The promotion track is a game
+> abstraction, not how real-world promotion works. Rules are a v1 playtest draft.
 
 ## Run
 
 ```bash
-npm run serve          # no-cache dev server (tools/serve.py) — avoids stale phone caches
-# open http://localhost:8080  (on your phone: http://<your-lan-ip>:8080)
+npm run serve          # no-cache dev server → http://localhost:8080
 ```
 
-### Install on your phone (PWA)
+```bash
+npm test               # engine acceptance tests (node tools/test.mjs)
+```
 
-- **Android (Chrome):** open the game over **HTTPS** → menu⋮ → *Install app*
-  (or *Add to Home screen*) — it installs full-screen portrait as “Monster City”.
-- **iOS (Safari):** Share → *Add to Home Screen* — works even over LAN http.
-- A service worker caches the app shell (**network-first**: always fresh when
-  online, playable offline). Icons are composed from the Gōryū portrait by
-  `tools/make_icons.py`.
-- Note: Android’s install prompt needs a secure context (https or localhost) —
-  plain `http://<lan-ip>` won’t offer it. Deploy to any HTTPS host (GitHub
-  Pages fits — paths are relative, works under a repo subpath).
-- Shake/tilt needs HTTPS or localhost (secure context) on phones — over plain
-  LAN http the sensors stay silent and the game falls back to tap-only; tap
-  always works.
+Add `?seed=123` to the URL for a reproducible tournament (dice, deck, opening roll).
 
-## Features
+## Rules in one screen
 
-- **Shake 📳 or tap** to roll — zero-dependency DeviceMotion detector
-  (`js/shake.js`), iOS permission requested on the Start tap. Toggle in the
-  `?` rules sheet.
-- **Minimal-scroll portrait UI** — board, standings, dice and the primary
-  action all fit one screen; cards/log/rules open as bottom sheets.
-- **Bot opponents** — setup toggle **BOTS / PASS & PLAY** (default bots): you
-  control one titan and CPU monsters play the rest (keep/reroll heuristics,
-  buys the strongest card it can afford, auto-yields City below 4 HP). The
-  market never auto-opens — tap Shop when you want it. The resolve
-  choreography is deliberately unhurried: beams, hits and captures each get
-  about a second to land.
-- **6 asymmetric kaiju, billed like a classic monster-movie poster**
-  (`data/monsters.json`): **Gōryū** “The Atomic Terror” (+1 attack damage — the
-  Godzilla slot), **Shirohime** “Empress of Moonlight” (heals 2), **Tetsujin-9**
-  “The Iron Menace” (ignore 1 damage/attack), **Onizaru** “Terror of the Red
-  Peak” (+1 reroll), **Suzaku** “The Vermillion Sky Terror” (+1⚡ per ⚡ face),
-  **Ganryū** “The Living Island” (reflect 1 damage). Names & epithets are
-  original homages — swap them freely in `data/monsters.json`.
-- **4 districts** (`data/zones.json`) instead of 2:
+Authoritative rules and data live in **`docs/`** and **`data/yokozuna-data.json`**
+(`docs/YOKOZUNA_RULES.md`, `docs/CARD_CATALOG.md`, `docs/AGENT_IMPLEMENTATION.md`).
 
-  | District | ✦ Perk | ✖ Drawback |
-  |---|---|---|
-  | Tokyo City | +2⭐ at turn start | 💚 heal dice do nothing |
-  | Tokyo Bay | +1⭐ +1⚡ at turn start | cards cost +1⚡ |
-  | Shinjuku Crossing | +2⚡ at turn start | attacks vs you deal +1 |
-  | Imperial Palace Gardens | heal 1❤️ at end of turn | cannot buy cards |
+- Start: 10 Stamina ❤️, 0 Prestige ⭐, 0 Fighting Spirit ⚡, everyone outside.
+  An opening roll (most Push) decides who goes first.
+- Turn: start inside → **+2 ⭐**. Roll six dice (`1 2 3 ⚡ ✋ 💚`), up to two
+  rerolls, then any extra single-die rerolls. Resolve in order:
+  numbers (three of a kind scores its value, +1 per extra) → Spirit → **Push**
+  attack → **Recover** (outside only). Then buy cards / refresh (2 ⚡).
+- **Dohyō:** inside, your Push hits everyone outside; outside, it hits everyone
+  inside. Empty ring → first Push takes the Main Dohyō (+1 ⭐, no damage). Hit by
+  Push inside → you may yield (damage still lands); the attacker enters (+1 ⭐).
+  An outside attacker must take any open position (Main first, never both).
+- **5–6 players:** a second **Challenge Dohyō** is open while 5+ are alive; when
+  the count drops below 5 its occupant steps outside (no damage, no Prestige).
+- Card damage (Henka!, Tsuppari Flurry, Final Bout) is **not** an attack: no
+  yielding, no entry.
+- **Win:** end your turn alive with 20+ ⭐, or be the last wrestler standing.
+  Simultaneous wipe-out → no winner. Ranks (Maegashira 0 · Komusubi 5 ·
+  Sekiwake 10 · Ōzeki 15 · Yokozuna 20) are display only.
 
-  Active districts = `min(players − 1, 4)` (someone must always remain
-  outside Tokyo); districts lock/unlock as monsters fall.
-- **75-card market** (`data/cards.json`) — 65 cards fully automated by the
-  effect engine, 10 complex ones marked "manual" (resolved by their text).
-- Win: first to 20⭐ (must survive your turn) or last monster standing.
+## The six rikishi
 
-### Feel (v2)
-
-- **Pixel art style** — hand-built 16×16 sprites for all 6 monsters, pixel icons
-  for hearts/energy/paws/stars, Silkscreen font, chunky shadowed panels.
-- **Staged resolve** — Resolve plays a sequence: dice glow per result group →
-  `TRIPLE 3×3` banner → energy surge → `2 CLAWS!` → animated attack beams on
-  the map from attacker to each victim → hit shakes → heal. Counter pickups
-  float on player cards (+★, +⚡, −♥).
-- **Sound FX** — WebAudio blips for rolling, hits, captures, KO and victory;
-  toggle in the rules sheet.
-
-### Aesthetic (v3–v4) — paper, ink & brush
-
-- **Parchment + sumi ink + vermilion seals** with a comic five-font system:
-  **Dela Gothic One** (manga-poster title & resolve banners), **M PLUS Rounded 1c**
-  (all UI: names, buttons, stats, dice — rounded & playful), **Yusei Magic**
-  (marker notes/ticker), **Yuji Syuku** (brush — only for seal stamps, 番 and the
-  map ribbon), **Zen Kaku Gothic New** (body).
-- **Static ink map** — hand-built SVG (no tiles, no map library, no network):
-  five evenly-spread spots — district seal stamps 京/宿/居 around a central
-  palace, outsiders camp at 野, dotted ink roads, a pale sea band. Tap a seal
-  for its perk/drawback; captures flash the seal; attack beams are animated
-  dashed ink lines drawn between monster tokens on a persistent overlay.
-- **In-place dice** — faces tumble and change in place in the tray; tap a
-  die to keep it, shake (or tap ROLL) to throw. No physics library, works
-  fully offline.
-- **Icons**: Lucide-style line set (`js/icons.js`) for everything in the UI.
-  Characters are ink-swatch placeholders until real art is imported —
-  specs in `assets/art/README.md` (1024×1024, transparent, ink & wash).
-- **Brush craft (v4)**: SVG brush-stroke backgrounds (primary button, announce
-  banners, title/sheet underlines), ink-splatter around the title,
-  angled everything (cards ±1°, banners −3.2°, tags −2.5°),
-  lifted paper drop-shadows, stretched hero player cards (portrait up to
-  104px for 2-player games), vertical calligraphy ribbon on the map.
+| Rikishi | Style | Power |
+|---|---|---|
+| **Iwakaze** 岩風 · The Iron Wall | Defender | *Unmovable* — once per opponent turn, prevent 1 of a 2+ Push hit while inside |
+| **Arashiryū** 嵐龍 · The Storm Dragon | Attacker | *Fierce Tachiai* — +1 damage with 3+ Push |
+| **Hoshinoumi** 星ノ海 · The Rising Star | Prestige | *Crowd Favourite* — +1 ⭐ when numbers score |
+| **Chiyonami** 千代波 · The Clever Technician | Dice control | *Master of Balance* — one extra single-die reroll |
+| **Akatsukifuji** 暁富士 · The Gentle Giant | Recovery | *Chanko Champion* — +1 ❤️ when Recover actually heals |
+| **Tetsunishiki** 鉄錦 · The Old Master | Spirit | *Stable Wisdom* — +1 ⚡ when Spirit dice grant Spirit |
 
 ## Project layout
 
 ```
-index.html                app shell (setup screen + game screen + sheets)
-css/paper.css             PAPER & INK theme — parchment, mincho type, red seals, safe-area, no page scroll
-js/engine.js              rules engine — dice, attacks, zones, cards, hooks, staged resolve
-js/ui.js                  rendering, static ink map, player cards, sheets, sequencer
-js/icons.js               Lucide-style line-icon library (UI icons + canvas dice faces)
-js/portrait.js            character ART PLACEHOLDERS (kanji swatches) — see assets/art/README.md
-js/sfx.js                 tiny WebAudio sound FX (no assets) + toggle
-js/main.js                bootstrap + monster-select setup screen
-js/shake.js               DeviceMotion shake detector (shake to roll)
-js/data.js                JSON loading + art-manifest fallback loader
-data/monsters.json        the 6 kaiju + powers (hooks)
-data/zones.json           districts, perks, unlock rules
-data/cards.json           card database (canonical — edit directly)
-data/art.json             art manifest: src → fallback mapping
-manifest.webmanifest      PWA manifest — installable as an app
-sw.js                     service worker — offline shell (network-first)
-tools/smoke.mjs           headless engine test (node tools/smoke.mjs)
-tools/make_icons.py       PWA icon composer (Gōryū portrait → 192/512/maskable)
+index.html                 app shell (rikishi select + game screen + sheets)
+css/paper.css              paper & ink theme: parchment, sumi, vermilion seals, clay dohyō
+data/yokozuna-data.json    SOURCE OF TRUTH: config, 6 characters, 20 cards, asset paths
+js/effects.js              data-driven effect registry (ability_id / effect_id → handler)
+                           + validateData() run at startup
+js/engine.js               rules engine: turn flow, dice, ring, market, win checks;
+                           seeded RNG in state, fully serializable (serialize/load)
+js/ui.js                   rendering, dohyō board SVG, staged resolve, market, modals
+js/bot.js                  CPU opponents
+js/main.js                 bootstrap, rikishi selection, retreat/target prompts
+js/data.js                 JSON load + art mounting (art keyed by stable ids)
+js/portrait.js             kanji placeholder while art loads
+js/icons.js, sfx.js, shake.js   line icons, WebAudio FX, shake-to-roll
+art/characters/, art/market/    sliced card art (paths = JSON `asset` keys)
+art/contact_sheets/        original generated sheets
+docs/                      design hand-off: rules, card catalog, implementation brief
+tools/test.mjs             engine acceptance tests
+tools/slice_art.py         contact sheets → per-asset PNGs (gutter-detecting slicer)
+tools/make_icons.py        PWA icons from the Iwakaze art
 ```
 
-## Importing generated art
+## Engine notes
 
-1. Generate art elsewhere; export at the sizes listed in
-   `data/art.json → recommendedSizes`.
-2. Drop files under `assets/art/` using the paths already referenced by
-   `data/art.json` (e.g. `assets/art/monsters/ryuga.webp`,
-   `assets/art/zones/city.webp`, `assets/art/dice/attack.webp`,
-   `assets/art/bg_tokyo_night.webp`).
-3. Done — every image auto-upgrades from its emoji/CSS fallback at runtime.
-   Missing files never break the game (failures are cached, no re-probing).
+- **Effect hooks** (in order): `onTurnStart → actives (reroll/convert) →
+  onNumberScore → onSpiritGain → beforePushDamage → modifyIncomingPush →
+  onRingEntry → onRecovery → instant (DISCARD) → onTurnEnd → checkVictory`.
+  Handlers return patches (`{prestige}`, `{damage}`, `{prevent}`…); the engine
+  applies them and tracks `once: 'turn' | 'opponentTurn'` per source instance in
+  `state.perTurnFlags`, so character powers and KEEP cards stack.
+- Damage carries a source: `PUSH_DICE` (prevention + yield prompts) or
+  `CARD_EFFECT` (neither).
+- Unmovable and Clay Footing are both evaluated against the **raw** incoming
+  Push damage, so a 2-damage hit on Iwakaze holding Clay Footing is reduced to 0
+  (catalog: "do not silently clamp").
+- Extra single-die rerolls end the normal rerolls; Mawashi Grip locks the dice
+  (it happens "after all rerolls").
+- Henka! / Final Bout need a target: they can't be bought with no eligible
+  opponent, and cancelling the target picker costs nothing.
+- Market: bought cards are replaced immediately; the empty deck reshuffles only
+  the discard pile; empty slots stay empty when both piles are exhausted.
 
-## Tweaking cards
+## Art
 
-- `data/cards.json` is the single source of truth — edit it directly for
-  balance tweaks (cost, text, `effects`, `hooks`). New cards: copy an entry;
-  `support: "text"` marks cards the engine shows but resolves manually.
-- Effect ops: `gainVp, gainEnergy, heal, damageOthers, damageAll,
-  damageSelf, vpOthers, energyDrainOthers, army, captureTokyo, extraTurn,
-  maxHp`. Keep-card hooks live in `js/engine.js` (see `recalc`).
+`python3 tools/slice_art.py` re-slices `art/contact_sheets/*.webp` into
+`art/characters/*.png` and `art/market/*.png` (256-colour PNGs, ~200 KB each),
+matching the `asset` paths in the JSON. All names, costs and rules text are
+rendered by the app — the art contains no text.
 
-## Testing
+## Install on your phone (PWA)
 
-```bash
-node tools/smoke.mjs     # engine assertions: capture, damage, yield,
-                         # buying, district bonuses, elimination, win
-```
-
-## Design notes
-
-- First player is drawn at random (no opening-dice roll UI).
-- Districts unlock as `min(players − 1, 4)` so at least one monster always
-  remains outside the districts (keeps attacks meaningful).
-- Attacker picks among vacant districts on capture (preference: City first).
-- Acid Attack's unconditional 1 damage is implemented as a true attack
-  against normal targets when you roll no 🐾.
+Open over HTTPS → *Install app* (Android) / Share → *Add to Home Screen* (iOS).
+The service worker is network-first (always fresh online, playable offline).
+Shake-to-roll needs HTTPS or localhost.

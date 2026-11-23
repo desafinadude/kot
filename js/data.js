@@ -1,40 +1,26 @@
-// Data loading + art-manifest resolution (art can be swapped in from elsewhere).
+// Data loading + art resolution. data/yokozuna-data.json is the single source
+// of truth; it is validated at startup (js/effects.js → validateData).
+import { validateData } from './effects.js';
 
 export async function loadData() {
-  const [monsters, zones, cards, art] = await Promise.all(
-    ['data/monsters.json', 'data/zones.json', 'data/cards.json', 'data/art.json']
-      .map((u) => fetch(u).then((r) => {
-        if (!r.ok) throw new Error(`Failed to load ${u}`);
-        return r.json();
-      }))
-  );
-  return { monsters, zones, cards, art: art.assets || {} };
-}
-
-export function fallbackHTML(art, key) {
-  const a = art[key];
-  if (!a || !a.fallback) return '';
-  const [kind, val] = [a.fallback.slice(0, a.fallback.indexOf(':')), a.fallback.slice(a.fallback.indexOf(':') + 1)];
-  if (kind === 'emoji') return val;
-  return '';
-}
-
-export function fallbackClass(art, key) {
-  const a = art[key];
-  if (!a || !a.fallback?.startsWith('css:')) return '';
-  return 'art-' + a.fallback.slice(4);
+  const r = await fetch('data/yokozuna-data.json');
+  if (!r.ok) throw new Error('Failed to load data/yokozuna-data.json');
+  const data = await r.json();
+  validateData(data);
+  // art map keyed by stable ids: char_<id>, card_<id> → the JSON `asset` path
+  const art = {};
+  for (const c of data.characters) art[`char_${c.id}`] = { src: c.asset };
+  for (const c of data.cards) art[`card_${c.id}`] = { src: c.asset };
+  return { data, art };
 }
 
 const failedArt = new Set();
 
-/**
- * Warm the browser cache for every art src (cards first) so images appear
- * instantly the first time they're shown. Safe to call once at boot.
- */
+/** Warm the browser cache for every art src (rikishi first) so images show instantly. */
 export function preloadArt(art) {
-  const entries = Object.values(art).filter((a) => a?.src && !failedArt.has(a.src));
-  entries.sort((a, b) => (b.src.includes('/cards/') ? 1 : 0) - (a.src.includes('/cards/') ? 1 : 0));
-  for (const a of entries) {
+  const entries = Object.entries(art).filter(([, a]) => a?.src && !failedArt.has(a.src));
+  entries.sort(([a], [b]) => (b.startsWith('char_') ? 1 : 0) - (a.startsWith('char_') ? 1 : 0));
+  for (const [, a] of entries) {
     const img = new Image();
     img.decoding = 'async';
     img.fetchPriority = 'low';
@@ -44,8 +30,8 @@ export function preloadArt(art) {
 }
 
 /**
- * Show the fallback immediately; upgrade to real art when/if the file loads.
- * mode: 'content' (replace children) | 'background' (tile the element bg)
+ * Keep the placeholder in place; swap in the real art when/if it loads.
+ * mode: 'content' (replace children) | 'background' (cover the element bg)
  */
 export function mountArt(el, art, key, mode = 'content') {
   if (!el) return;
@@ -53,18 +39,18 @@ export function mountArt(el, art, key, mode = 'content') {
   if (!a?.src || failedArt.has(a.src)) return;
   const img = new Image();
   img.decoding = 'async';
+  img.alt = '';
   img.onload = () => {
     if (mode === 'background') {
       el.style.backgroundImage = `url("${a.src}")`;
       el.style.backgroundSize = 'cover';
-      el.style.backgroundPosition = 'center';
+      el.style.backgroundPosition = 'center top';
     } else {
       el.innerHTML = '';
       el.appendChild(img);
     }
   };
-  img.onerror = () => { failedArt.add(a.src); }; // keep the fallback, don't re-probe
+  img.onerror = () => { failedArt.add(a.src); };
   img.src = a.src;
-  // already cached (preloaded) → paint synchronously, no flash of fallback
   if (img.complete && img.naturalWidth) img.onload();
 }

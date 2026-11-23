@@ -1,6 +1,6 @@
-// Monster City — service worker: network-first with cache fallback.
+// YOKOZUNA — service worker: network-first with cache fallback.
 // Online → always fresh (never serves stale files); offline → app shell from cache.
-const CACHE = 'monster-city-v1';
+const CACHE = 'yokozuna-v1';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();

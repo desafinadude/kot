@@ -1,10 +1,13 @@
 {
-  "name": "monster-city-kaiju",
-  "version": "0.1.0",
+  "name": "yokozuna",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Monster City — Kaiju Edition. Static portrait mobile game (no build step).",
+  "description": "YOKOZUNA — The Road to Grand Champion. Static portrait mobile dice-and-card sumo game (no build step).",
   "scripts": {
-    "serve": "python3 tools/serve.py"
+    "serve": "python3 tools/serve.py",
+    "test": "node tools/test.mjs",
+    "slice-art": "python3 tools/slice_art.py",
+    "icons": "python3 tools/make_icons.py"
   }
 }

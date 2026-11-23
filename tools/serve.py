@@ -18,5 +18,5 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
-    print(f"Monster City dev server (no-store) → http://localhost:{port}")
+    print(f"YOKOZUNA dev server (no-store) → http://localhost:{port}")
     http.server.ThreadingHTTPServer(("", port), NoCacheHandler).serve_forever()

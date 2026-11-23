@@ -1,5 +1,5 @@
 // Line-icon library (Lucide-style, ISC-licensed paths redrawn/adapted).
-// Used for ALL interface icons — characters/portraits are separate (see portrait.js).
+// Used for ALL interface icons (palm = Push die) — characters/portraits are separate (see portrait.js).
 
 const S = {
   heart: [{ t: 'path', d: 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z' }],
@@ -11,6 +11,12 @@ const S = {
     { t: 'circle', cx: 17.5, cy: 6.5, r: 2.2 },
     { t: 'circle', cx: 20.5, cy: 12.5, r: 2 },
     { t: 'path', d: 'M9.2 11.2c2.6-1.4 6-1 8 1.4 1.7 2.1 1.4 4.9-.6 6.6-1.7 1.5-4.3 1.6-6 .3-2.4-1.8-3.9-5.4-1.4-8.3Z' },
+  ],
+  palm: [
+    { t: 'path', d: 'M18 11V6a2 2 0 0 0-4 0' },
+    { t: 'path', d: 'M14 10V4a2 2 0 0 0-4 0v2' },
+    { t: 'path', d: 'M10 10.5V6a2 2 0 0 0-4 0v8' },
+    { t: 'path', d: 'M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-6-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15' },
   ],
   skull: [
     { t: 'path', d: 'M12 2a8 8 0 0 0-8 8c0 2.4 1.1 4.3 2.9 5.6V17a2 2 0 0 0 2 2h1v2.2a1.1 1.1 0 0 0 1.1 1.1h.1a1.1 1.1 0 0 0 1.1-1.1V19h.8v2.2a1.1 1.1 0 0 0 1.1 1.1h.1a1.1 1.1 0 0 0 1.1-1.1V19h1a2 2 0 0 0 2-2v-1.4C18.9 14.3 20 12.4 20 10a8 8 0 0 0-8-8Z' },

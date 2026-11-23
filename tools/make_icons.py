@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compose PWA app icons from the generated Gōryū portrait.
+"""Compose PWA app icons from the Iwakaze rikishi art (head & shoulders crop).
 
 Outputs (assets/icons/):
   icon-192.png          any-purpose, rounded, vermilion border
@@ -16,7 +16,9 @@ OUT = ROOT / "assets" / "icons"
 PARCH = (240, 230, 210)      # parchment #f0e6d2
 VERMILION = (178, 58, 46)    # seal red #b23a2e
 
-portrait = Image.open(ROOT / "assets" / "art" / "monsters" / "ryuga.webp").convert("RGB")
+_src = Image.open(ROOT / "art" / "characters" / "01_iwakaze.png").convert("RGB")
+_w = _src.width
+portrait = _src.crop((0, 0, _w, _w))      # square from the top: face + folded arms
 
 
 def rounded_mask(size, radius):

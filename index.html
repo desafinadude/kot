@@ -6,16 +6,16 @@
   <meta name="theme-color" content="#f0e6d2" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Monster City" />
+  <meta name="apple-mobile-web-app-title" content="Yokozuna" />
   <meta name="mobile-web-app-capable" content="yes" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png" />
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
-  <title>Monster City — Kaiju Edition</title>
+  <title>YOKOZUNA — The Road to Grand Champion</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@500;700;900&family=Yuji+Syuku&family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/paper.css?v=11" />
+  <link rel="stylesheet" href="css/paper.css?v=20" />
 </head>
 <body>
   <div id="app">
@@ -23,13 +23,13 @@
     <!-- ══════════ SETUP ══════════ -->
     <section id="screen-setup" class="screen">
       <header class="setup-head">
-        <div class="setup-logo" id="setupLogo">👑</div>
-        <h1>MONSTER CITY</h1>
-        <p class="sub">怪獣 · Kaiju Edition — 6 titans · 4 districts · one throne</p>
+        <div class="setup-logo" id="setupLogo"><span class="seal-king">綱</span></div>
+        <h1>YOKOZUNA</h1>
+        <p class="sub">横綱 · The Road to Grand Champion</p>
       </header>
 
       <div class="setup-row">
-        <span class="setup-label">Monsters</span>
+        <span class="setup-label">Wrestlers <small id="ringNote"></small></span>
         <div class="stepper">
           <button id="btnMinus" class="step-btn" aria-label="fewer">−</button>
           <span id="playerCount">2</span>
@@ -40,16 +40,16 @@
       <div class="setup-row">
         <span class="setup-label">Opponents</span>
         <div class="mode-toggle" id="modeToggle">
-          <button class="mode-btn active" data-mode="bots">BOTS</button>
+          <button class="mode-btn active" data-mode="bots">VS CPU</button>
           <button class="mode-btn" data-mode="pass">PASS &amp; PLAY</button>
         </div>
       </div>
 
-      <div class="monster-grid" id="monsterGrid"></div>
+      <div class="rikishi-grid" id="rikishiGrid"></div>
 
       <div class="setup-foot">
-        <button id="btnStart" class="btn-primary" disabled>SELECT 2 MONSTERS</button>
-        <p class="hint">Tap monsters in seat order. First player is drawn at random.<br/>Shake your phone (or tap) to roll the dice.</p>
+        <button id="btnStart" class="btn-primary" disabled>CHOOSE YOUR RIKISHI</button>
+        <p class="hint"></p>
       </div>
     </section>
 
@@ -85,7 +85,7 @@
       <div class="actions">
         <div class="action-row">
           <button id="btnSecondary" class="btn-ghost hidden"></button>
-          <button id="btnShop" class="btn-ghost hidden">🃏 Shop</button>
+          <button id="btnShop" class="btn-ghost hidden">Market</button>
         </div>
         <button id="btnPrimary" class="btn-primary">ROLL</button>
       </div>
@@ -97,24 +97,24 @@
     <div class="sheet hidden" id="sheetShop">
       <div class="sheet-grip"></div>
       <div class="sheet-head">
-        <h2>Card Market</h2>
-        <div class="energy-pill" id="shopEnergy">⚡ 0</div>
+        <h2>Market</h2>
+        <div class="spirit-pill" id="shopSpirit">⚡ 0</div>
         <button class="sheet-close" data-close>✕</button>
       </div>
       <div class="sheet-note" id="shopNote"></div>
       <div class="card-list" id="cardList"></div>
-      <button class="btn-ghost wide" id="btnSweep">Sweep the market · 2 Energy</button>
+      <button class="btn-ghost wide" id="btnRefresh">Refresh market · 2 Spirit</button>
     </div>
 
     <div class="sheet hidden" id="sheetLog">
       <div class="sheet-grip"></div>
-      <div class="sheet-head"><h2>City Log</h2><button class="sheet-close" data-close>✕</button></div>
+      <div class="sheet-head"><h2>Bout Log</h2><button class="sheet-close" data-close>✕</button></div>
       <div class="log-list" id="logList"></div>
     </div>
 
     <div class="sheet hidden" id="sheetRules">
       <div class="sheet-grip"></div>
-      <div class="sheet-head"><h2>Rules &amp; Districts</h2><button class="sheet-close" data-close>✕</button></div>
+      <div class="sheet-head"><h2>Rules &amp; Rikishi</h2><button class="sheet-close" data-close>✕</button></div>
       <div class="rules-body" id="rulesBody"></div>
     </div>
 
@@ -123,6 +123,6 @@
     <div class="win-overlay hidden" id="winOverlay"></div>
   </div>
 
-  <script type="module" src="js/main.js?v=10"></script>
+  <script type="module" src="js/main.js?v=20"></script>
 </body>
 </html>

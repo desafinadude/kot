@@ -1,7 +1,7 @@
 {
-  "name": "Monster City — Kaiju Edition",
-  "short_name": "Monster City",
-  "description": "Giant monsters rampage through the city — roll dice, claim districts, buy cards. First to 20 VP or last titan standing wins.",
+  "name": "YOKOZUNA — The Road to Grand Champion",
+  "short_name": "Yokozuna",
+  "description": "A dice-and-card sumo tournament: roll, push, hold the dohyō, learn techniques. First to 20 Prestige or last wrestler standing becomes Yokozuna.",
   "id": "./",
   "start_url": "./",
   "scope": "./",

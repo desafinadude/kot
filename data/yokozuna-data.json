@@ -1,0 +1,342 @@
+{
+  "schema_version": "1.0.0",
+  "status": "PROTOTYPE_UNPLAYTESTED",
+  "config": {
+    "id": "yokozuna",
+    "title": "YOKOZUNA",
+    "subtitle": "The Road to Grand Champion",
+    "players": {
+      "min": 2,
+      "max": 6
+    },
+    "initial_stamina": 10,
+    "maximum_stamina": 10,
+    "initial_prestige": 0,
+    "initial_spirit": 0,
+    "prestige_to_win": 20,
+    "base_dice": 6,
+    "dice_faces": [
+      "1",
+      "2",
+      "3",
+      "SPIRIT",
+      "PUSH",
+      "RECOVER"
+    ],
+    "normal_reroll_opportunities": 2,
+    "ring_start_turn_prestige": 2,
+    "ring_entry_prestige": 1,
+    "market_slots": 3,
+    "market_sweep_cost": 2,
+    "second_ring_min_alive_players": 5,
+    "rank_thresholds": [
+      {
+        "at": 0,
+        "rank": "Maegashira"
+      },
+      {
+        "at": 5,
+        "rank": "Komusubi"
+      },
+      {
+        "at": 10,
+        "rank": "Sekiwake"
+      },
+      {
+        "at": 15,
+        "rank": "Ōzeki"
+      },
+      {
+        "at": 20,
+        "rank": "Yokozuna"
+      }
+    ]
+  },
+  "characters": [
+    {
+      "id": "iwakaze",
+      "name": "Iwakaze",
+      "kanji": "岩風",
+      "epithet": "The Iron Wall",
+      "color": "#315D87",
+      "style": "Defender",
+      "ability_id": "iron_wall",
+      "ability_name": "Unmovable",
+      "ability": "Once per opponent turn, when an attack made with Push dice would deal you 2 or more damage while you control a dohyō position, prevent 1 of that damage.",
+      "art": "An enormous, stern veteran in an indigo mawashi with folded arms, Mount Fuji, stylised indigo waves and golden evening cloud.",
+      "asset": "art/characters/01_iwakaze.png"
+    },
+    {
+      "id": "arashiryu",
+      "name": "Arashiryū",
+      "kanji": "嵐龍",
+      "epithet": "The Storm Dragon",
+      "color": "#BA3F31",
+      "style": "Attacker",
+      "ability_id": "fierce_tachiai",
+      "ability_name": "Fierce Tachiai",
+      "ability": "Once on your turn, if your final dice show 3 or more Push symbols, add 1 damage to your dice attack.",
+      "art": "A fierce young rikishi in a crimson mawashi launching a low tachiai charge, vermilion lightning-like brushstrokes and flying dust.",
+      "asset": "art/characters/02_arashiryu.png"
+    },
+    {
+      "id": "hoshinoumi",
+      "name": "Hoshinoumi",
+      "kanji": "星ノ海",
+      "epithet": "The Rising Star",
+      "color": "#775C9C",
+      "style": "Prestige scorer",
+      "ability_id": "crowd_favourite",
+      "ability_name": "Crowd Favourite",
+      "ability": "Once on your turn, when your numbered dice earn at least 1 Prestige, gain 1 additional Prestige.",
+      "art": "A charismatic confident rikishi in a purple mawashi with an open-palmed showman pose, lilac banners, star shapes and cheering supporters.",
+      "asset": "art/characters/03_hoshinoumi.png"
+    },
+    {
+      "id": "chiyonami",
+      "name": "Chiyonami",
+      "kanji": "千代波",
+      "epithet": "The Clever Technician",
+      "color": "#287760",
+      "style": "Dice control",
+      "ability_id": "master_balance",
+      "ability_name": "Master of Balance",
+      "ability": "Once on your turn, after your two normal reroll opportunities, you may reroll exactly one die and must accept its new result.",
+      "art": "A relatively lean nimble rikishi in a dark green mawashi crouched low in a poised stance, bamboo and a breaking emerald wave.",
+      "asset": "art/characters/04_chiyonami.png"
+    },
+    {
+      "id": "akatsukifuji",
+      "name": "Akatsukifuji",
+      "kanji": "暁富士",
+      "epithet": "The Gentle Giant",
+      "color": "#C39435",
+      "style": "Recovery",
+      "ability_id": "chanko_champion",
+      "ability_name": "Chanko Champion",
+      "ability": "Once on your turn, if at least one Recovery die actually restores Stamina, restore 1 additional Stamina, up to 10.",
+      "art": "A broad cheerful rikishi in a mustard/gold mawashi, holding a steaming chanko-nabe bowl, lanterns and golden celebratory pattern.",
+      "asset": "art/characters/05_akatsukifuji.png"
+    },
+    {
+      "id": "tetsunishiki",
+      "name": "Tetsunishiki",
+      "kanji": "鉄錦",
+      "epithet": "The Old Master",
+      "color": "#247F84",
+      "style": "Spirit economy",
+      "ability_id": "stable_wisdom",
+      "ability_name": "Stable Wisdom",
+      "ability": "Once on your turn, if your Spirit dice grant you 1 or more Fighting Spirit, gain 1 additional Fighting Spirit.",
+      "art": "A weathered older veteran rikishi in a turquoise mawashi, strong craggy face, pine trees, ocean-blue ink clouds and restrained gold.",
+      "asset": "art/characters/06_tetsunishiki.png"
+    }
+  ],
+  "cards": [
+    {
+      "id": "tachiai_charge",
+      "name": "Tachiai Charge",
+      "type": "KEEP",
+      "cost": 5,
+      "effect_id": "attack_bonus_three",
+      "effect": "Once on your turn, if your final dice show 3 or more Push symbols, add 1 damage to your dice attack.",
+      "art": "A red-mawashi wrestler exploding forward at the opening charge, forceful red-gold speed lines.",
+      "asset": "art/market/01_tachiai_charge.png"
+    },
+    {
+      "id": "mawashi_grip",
+      "name": "Mawashi Grip",
+      "type": "KEEP",
+      "cost": 4,
+      "effect_id": "convert_one_to_push",
+      "effect": "Once on your turn, after all rerolls, you may change one die showing 1 to Push.",
+      "art": "Close-up hands gripping a blue sumo mawashi, tense dramatic fabric folds, indigo and brass.",
+      "asset": "art/market/02_mawashi_grip.png"
+    },
+    {
+      "id": "clay_footing",
+      "name": "Clay Footing",
+      "type": "KEEP",
+      "cost": 4,
+      "effect_id": "ring_defense_once",
+      "effect": "Once per opponent turn, prevent 1 damage from the first dice attack that hits you while you control a dohyō position.",
+      "art": "Feet digging into clay near the straw tawara ring edge, cracked earth and dust, ochre.",
+      "asset": "art/market/03_clay_footing.png"
+    },
+    {
+      "id": "extra_keiko",
+      "name": "Extra Keiko",
+      "type": "KEEP",
+      "cost": 4,
+      "effect_id": "extra_single_reroll",
+      "effect": "Once on your turn, after your normal rerolls, you may reroll exactly one die and must accept its result.",
+      "art": "Rikishi performing a powerful high-leg shiko training stomp in a stable, emerald and gold.",
+      "asset": "art/market/04_extra_keiko.png"
+    },
+    {
+      "id": "chanko_recipe",
+      "name": "Chanko Recipe",
+      "type": "KEEP",
+      "cost": 4,
+      "effect_id": "heal_bonus",
+      "effect": "Once on your turn, if at least one Recovery die actually restores Stamina, restore 1 additional Stamina, up to 10.",
+      "art": "Steaming traditional chanko-nabe meal in an iron pot with tofu, cabbage and broth, warm lantern glow.",
+      "asset": "art/market/05_chanko_recipe.png"
+    },
+    {
+      "id": "senior_rank",
+      "name": "Senior Rank",
+      "type": "KEEP",
+      "cost": 5,
+      "effect_id": "ring_start_prestige",
+      "effect": "When you start your turn controlling a dohyō position, gain 1 extra Prestige in addition to the normal 2.",
+      "art": "Ornate vertical banzuke ranking scroll without readable writing, gold braided tassels.",
+      "asset": "art/market/06_senior_rank.png"
+    },
+    {
+      "id": "crowd_chant",
+      "name": "Crowd Chant",
+      "type": "KEEP",
+      "cost": 4,
+      "effect_id": "numbered_bonus",
+      "effect": "Once on your turn, when numbered dice earn at least 1 Prestige, gain 1 additional Prestige.",
+      "art": "Excited tournament spectators calling out and waving patterned fans, indigo and purple crowd.",
+      "asset": "art/market/07_crowd_chant.png"
+    },
+    {
+      "id": "salt_ritual",
+      "name": "Salt Ritual",
+      "type": "KEEP",
+      "cost": 3,
+      "effect_id": "spirit_bonus",
+      "effect": "Once on your turn, if your Spirit dice grant at least 1 Fighting Spirit, gain 1 additional Fighting Spirit.",
+      "art": "Rikishi throwing a dazzling white arc of purification salt before a bout, violet smoky background.",
+      "asset": "art/market/08_salt_ritual.png"
+    },
+    {
+      "id": "stable_support",
+      "name": "Stable Support",
+      "type": "KEEP",
+      "cost": 4,
+      "effect_id": "end_turn_outside_heal",
+      "effect": "At the end of your turn, if you are outside both dohyō positions and have 7 or fewer Stamina, recover 1 Stamina.",
+      "art": "An older stablemaster coaching a younger rikishi beside practice posts, warm wooden stable.",
+      "asset": "art/market/09_stable_support.png"
+    },
+    {
+      "id": "rivalry",
+      "name": "Fierce Rivalry",
+      "type": "KEEP",
+      "cost": 3,
+      "effect_id": "entry_prestige_bonus",
+      "effect": "Once on your turn, when you take an empty dohyō position after resolving your Push dice attack, gain 1 additional Prestige.",
+      "art": "Two imposing rikishi glaring at each other before the tachiai, red and blue split composition.",
+      "asset": "art/market/10_rivalry.png"
+    },
+    {
+      "id": "chanko_feast",
+      "name": "Chanko Feast",
+      "type": "DISCARD",
+      "cost": 3,
+      "effect_id": "instant_heal_3",
+      "effect": "Immediately recover 3 Stamina, even if you control a dohyō position. You cannot exceed 10 Stamina.",
+      "art": "Huge bubbling chanko-nabe hotpot surrounded by rice bowls and chopsticks, steam.",
+      "asset": "art/market/11_chanko_feast.png"
+    },
+    {
+      "id": "zabuton_storm",
+      "name": "Zabuton Storm",
+      "type": "DISCARD",
+      "cost": 4,
+      "effect_id": "instant_prestige_3",
+      "effect": "Immediately gain 3 Prestige.",
+      "art": "Red floor cushions flying over jubilant sumo spectators in a packed arena.",
+      "asset": "art/market/12_zabuton_storm.png"
+    },
+    {
+      "id": "kachi_koshi",
+      "name": "Kachi-koshi",
+      "type": "DISCARD",
+      "cost": 6,
+      "effect_id": "instant_prestige_5",
+      "effect": "Immediately gain 5 Prestige.",
+      "art": "Triumphant rikishi holding a giant ornate golden tournament trophy beneath falling confetti.",
+      "asset": "art/market/13_kachi_koshi.png"
+    },
+    {
+      "id": "sponsor_gift",
+      "name": "Sponsor’s Envelope",
+      "type": "DISCARD",
+      "cost": 2,
+      "effect_id": "instant_spirit_4",
+      "effect": "Immediately gain 4 Fighting Spirit (after paying this card’s cost).",
+      "art": "Ceremonial envelopes and traditional embroidered sponsorship banners, gold and deep navy.",
+      "asset": "art/market/14_sponsor_gift.png"
+    },
+    {
+      "id": "shikiri_reset",
+      "name": "Shikiri Reset",
+      "type": "DISCARD",
+      "cost": 3,
+      "effect_id": "instant_heal_2_prestige_1",
+      "effect": "Immediately recover 2 Stamina and gain 1 Prestige.",
+      "art": "Rikishi crouching quietly at shikiri lines, soft dust, focused eyes and amber lanterns.",
+      "asset": "art/market/15_shikiri_reset.png"
+    },
+    {
+      "id": "henka",
+      "name": "Henka!",
+      "type": "DISCARD",
+      "cost": 4,
+      "effect_id": "instant_ring_target_damage_3",
+      "effect": "Choose one opponent controlling a dohyō position. They lose 3 Stamina. This is not a dice attack and does not allow them to retreat.",
+      "art": "One nimble wrestler sidestepping a charging heavier rival, sweeping diagonal motion lines.",
+      "asset": "art/market/16_henka.png"
+    },
+    {
+      "id": "tsuppari_flurry",
+      "name": "Tsuppari Flurry",
+      "type": "DISCARD",
+      "cost": 4,
+      "effect_id": "instant_opposite_damage_2",
+      "effect": "Every opponent on the opposite side of the ring boundary from you loses 2 Stamina. This is not a dice attack and cannot cause a retreat.",
+      "art": "Rapid-fire open-hand thrusts in an arena, repeated hands and energetic red screen-print lines.",
+      "asset": "art/market/17_tsuppari_flurry.png"
+    },
+    {
+      "id": "ceremonial_entrance",
+      "name": "Ceremonial Entrance",
+      "type": "DISCARD",
+      "cost": 3,
+      "effect_id": "instant_conditional_prestige",
+      "effect": "If you control a dohyō position, gain 2 Prestige. Otherwise, gain 1 Prestige and 1 Fighting Spirit.",
+      "art": "Magnificent ring-entering ceremony, colourful kesho-mawashi apron and ceremonial rope.",
+      "asset": "art/market/18_ceremonial_entrance.png"
+    },
+    {
+      "id": "suriashi_drills",
+      "name": "Suriashi Drills",
+      "type": "DISCARD",
+      "cost": 2,
+      "effect_id": "instant_heal_2_spirit_1",
+      "effect": "Immediately recover 2 Stamina and gain 1 Fighting Spirit. Healing works even in a dohyō position.",
+      "art": "Low sliding-foot training exercise in a wooden stable with chalk lines and sweat.",
+      "asset": "art/market/19_suriashi_drills.png"
+    },
+    {
+      "id": "final_bout",
+      "name": "Final Bout",
+      "type": "DISCARD",
+      "cost": 4,
+      "effect_id": "instant_target_damage_2_prestige_1",
+      "effect": "Choose one opponent. They lose 2 Stamina, and you gain 1 Prestige. This is not a dice attack and cannot cause a retreat.",
+      "art": "High-drama final bout under arena spotlights, two sumo wrestlers locked in a mawashi grapple.",
+      "asset": "art/market/20_final_bout.png"
+    }
+  ],
+  "art": {
+    "characters_sheet": "art/contact_sheets/01_rikishi.webp",
+    "market_keep_sheet": "art/contact_sheets/02_market_keep.webp",
+    "market_discard_sheet": "art/contact_sheets/03_market_discard.webp"
+  }
+}

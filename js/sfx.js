@@ -49,7 +49,7 @@ export const sfx = {
   roll() { noise(0.22, { gain: 0.07, hp: 700 }); tone(180, 0.08, { gain: 0.03, slide: -60 }); },
   keep() { tone(520, 0.05, { gain: 0.035 }); },
   score() { tone(660, 0.09); tone(880, 0.1, { delay: 0.09 }); },
-  energy() { tone(1046, 0.07, { type: 'triangle', gain: 0.045 }); tone(1318, 0.09, { type: 'triangle', gain: 0.04, delay: 0.07 }); },
+  spirit() { tone(1046, 0.07, { type: 'triangle', gain: 0.045 }); tone(1318, 0.09, { type: 'triangle', gain: 0.04, delay: 0.07 }); },
   windup() { tone(220, 0.28, { type: 'sawtooth', gain: 0.03, slide: 340 }); },
   hit() { tone(95, 0.16, { type: 'square', gain: 0.07, slide: -40 }); noise(0.1, { gain: 0.05, hp: 300 }); },
   miss() { tone(300, 0.08, { gain: 0.02, slide: -120 }); },
